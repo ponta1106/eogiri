@@ -1,10 +1,5 @@
 <template>
   <p>{{ message }}</p>
-  <p>{{ count }}</p>
-  <p>
-    <button @click="countUp">+</button>
-    <button @click="countDown">-</button>
-  </p>
 </template>
 
 <script>
@@ -14,14 +9,6 @@ export default {
     return {
       message: 'This is Top Page!',
       count: 0,
-    }
-  },
-  methods: {
-    countUp() {
-      this.count += 1;
-    },
-    countDown() {
-      this.count -= 1;
     }
   }
 }

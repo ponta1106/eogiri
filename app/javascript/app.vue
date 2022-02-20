@@ -11,12 +11,45 @@
         <router-link to="/titles">Titles</router-link>
       </li>
       <li>
-        <router-link to="/titles/1">Titles/1</router-link>
+        <router-link :to="titleShow">Titles/{{ count }}</router-link>
+      </li>
+      <li>
+        <button @click="countUp">+</button>
+        <button @click="countDown">-</button>
       </li>
     </ul>
   </header>
   <router-view/>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      count: 1
+    }
+  },
+  computed: {
+    titleShow() {
+      if(this.count >= 1) {
+        return '/titles/' + this.count
+      } else {
+        return null;
+      }
+    }
+  },
+  methods: {
+    countUp() {
+      this.count += 1;
+    },
+    countDown() {
+      if(this.count >= 2) {
+        this.count -= 1;
+      }
+    }
+  }
+}
+</script>
 
 <style>
 
