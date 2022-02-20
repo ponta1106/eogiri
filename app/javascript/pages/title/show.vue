@@ -1,13 +1,13 @@
 <template>
-  <p>{{ message }}</p>
+  <p>This is titles/{{ showParams }} Page!</p>
 </template>
 
 <script>
 export default {
   name: 'TitleShow',
-  data() {
-    return {
-      message: 'This is TitleShow Page!'
+  computed: {
+    showParams() {
+      return this.$route.params['id']
     }
   }
 }
