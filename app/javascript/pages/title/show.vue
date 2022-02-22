@@ -1,21 +1,26 @@
 <template>
-  <p>This is titles/{{ showParams }} Page!</p>
+  <div id="title-show">
+    <transition name="fade" appear>
+      <p>{{ message }}</p>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'TitleShow',
-  computed: {
-    showParams() {
-      return this.$route.params['id']
+  data() {
+    return {
+      message: 'This is Title Show Page!'
     }
   }
 }
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
+
+#title-show {
+  background-color: #d0d2d1;
 }
+
 </style>

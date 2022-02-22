@@ -1,5 +1,5 @@
 <template>
-  <div id="top-page">
+  <div id="terms_of_use-page">
     <transition name="fade" appear>
       <p>{{ message }}</p>
     </transition>
@@ -8,10 +8,10 @@
 
 <script>
 export default {
-  name: 'Top',
+  name: 'TermsOfUse',
   data() {
     return {
-      message: 'This is Top Page!',
+      message: "This is Terms Of Use Page!"
     }
   }
 }
@@ -19,8 +19,8 @@ export default {
 
 <style scoped>
 
-#top-page {
-  background-color: #ffc195;
+#terms_of_use-page {
+  background-color: lemonchiffon;
 }
 
 </style>

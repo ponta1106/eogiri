@@ -1,5 +1,5 @@
 <template>
-  <div id="top-page">
+  <div id="privacy_policy-page">
     <transition name="fade" appear>
       <p>{{ message }}</p>
     </transition>
@@ -8,10 +8,10 @@
 
 <script>
 export default {
-  name: 'Top',
+  name: 'PrivacyPolicy',
   data() {
     return {
-      message: 'This is Top Page!',
+      message: "This is Privacy Policy Page!"
     }
   }
 }
@@ -19,8 +19,8 @@ export default {
 
 <style scoped>
 
-#top-page {
-  background-color: #ffc195;
+#privacy_policy-page {
+  background-color: wheat;
 }
 
 </style>
