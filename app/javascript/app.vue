@@ -1,53 +1,20 @@
 <template>
-  <header>
-    <ul>
-      <li>
-        <router-link to="/">Top</router-link>
-      </li>
-      <li>
-        <router-link to="/contact">Contact</router-link>
-      </li>
-      <li>
-        <router-link to="/titles">Titles</router-link>
-      </li>
-      <li>
-        <router-link :to="titleShow">Titles/{{ count }}</router-link>
-      </li>
-      <li>
-        <button @click="countUp">+</button>
-        <button @click="countDown">-</button>
-      </li>
-    </ul>
-  </header>
-  <router-view/>
+  <div id="app">
+    <SharedHeader />
+      <router-view style="flex-grow: 1;"/>
+    <SharedFooter />
+  </div>
 </template>
 
 <script>
+import SharedHeader from './components/SharedHeader.vue'
+import SharedFooter from './components/SharedFooter.vue'
 export default {
-  data() {
-    return {
-      count: 1
-    }
+  name: 'App',
+  components: {
+    SharedHeader,
+    SharedFooter
   },
-  computed: {
-    titleShow() {
-      if(this.count >= 1) {
-        return '/titles/' + this.count
-      } else {
-        return null;
-      }
-    }
-  },
-  methods: {
-    countUp() {
-      this.count += 1;
-    },
-    countDown() {
-      if(this.count >= 2) {
-        this.count -= 1;
-      }
-    }
-  }
 }
 </script>
 
@@ -55,22 +22,32 @@ export default {
 
 body {
   margin: 0;
-  color: #555;
+  color: #8799ad;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-header {
-  background: #eee;
-}
-
-ul {
+#app {
   display: flex;
-  list-style: none;
-  padding: 20px;
-  margin: 0;
+  flex-flow: column;
+  min-height: 100vh;
+  justify-content: space-between;
 }
 
-li {
-  margin-right: 10px;
+p {
+  font-size: 2em;
+  text-align: center;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 2s,
+              transform 1s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
 </style>

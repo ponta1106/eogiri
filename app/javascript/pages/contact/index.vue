@@ -1,5 +1,9 @@
 <template>
-  <p>{{ message }}</p>
+  <div id="contact-page">
+    <transition name="fade" appear>
+      <p>{{ message }}</p>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -7,15 +11,16 @@ export default {
   name: 'Contact',
   data() {
     return {
-      message: "This is contact page!"
+      message: "This is Contact Page!"
     }
   }
 }
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
+
+#contact-page {
+  background-color: #eddbdb;
 }
+
 </style>

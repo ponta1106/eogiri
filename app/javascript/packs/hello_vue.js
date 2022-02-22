@@ -4,5 +4,5 @@ import router from '../router'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = createApp(App).use(router)
-  app.mount('#app');
+  app.mount('#vue-template');
 })

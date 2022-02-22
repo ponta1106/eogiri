@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Top from '../pages/top';
 import Contact from '../pages/contact';
+import PrivacPolicy from '../pages/privacy_policy';
+import TermsOfUse from '../pages/terms_of_use';
 import TitleIndex from '../pages/title/index';
 import TitleShow from '../pages/title/show';
 
@@ -9,6 +11,16 @@ const routes = [
     path: '/',
     name: 'Top',
     component: Top,
+  },
+  {
+    path: '/terms_of_use',
+    name: 'TermsOfUse',
+    component: TermsOfUse,
+  },
+  {
+    path: '/privacy_policy',
+    name: 'PrivacPolicy',
+    component: PrivacPolicy,
   },
   {
     path: '/contact',
