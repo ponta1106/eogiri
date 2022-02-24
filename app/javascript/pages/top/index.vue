@@ -3,8 +3,6 @@
     <transition name="fade" appear>
       <p>{{ message }}</p>
     </transition>
-    <button @click="increment">UP</button>
-    <p>{{ $store.state.count }}</p>
   </div>
 </template>
 
@@ -13,12 +11,7 @@ export default {
   name: 'Top',
   data() {
     return {
-      message: 'This is Top Page!',
-    }
-  },
-  methods: {
-    increment() {
-      this.$store.dispatch('incrementActions')
+      message: '絵大喜利'
     }
   }
 }
