@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Top from '../pages/top';
 import Contact from '../pages/contact';
-import PrivacPolicy from '../pages/privacy_policy';
+import PrivacyPolicy from '../pages/privacy_policy';
 import TermsOfUse from '../pages/terms_of_use';
 import TitleIndex from '../pages/title/index';
 import TitleShow from '../pages/title/show';
@@ -19,8 +19,8 @@ const routes = [
   },
   {
     path: '/privacy_policy',
-    name: 'PrivacPolicy',
-    component: PrivacPolicy,
+    name: 'PrivacyPolicy',
+    component: PrivacyPolicy,
   },
   {
     path: '/contact',

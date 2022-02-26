@@ -1,6 +1,6 @@
 <template>
   <div id="top-page">
-    <transition name="fade" appear>
+    <transition name="drop" appear>
       <h3>絵大喜利</h3>
     </transition>
   </div>
