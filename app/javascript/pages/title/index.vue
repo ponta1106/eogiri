@@ -13,20 +13,24 @@
           {{ title.id }} . {{ title.theme }} - {{ title.user_name }}
         </li>
       </transition-group>
-      <label for="theme">お題</label>
-      <input
-        type="text"
-        id="theme"
-        v-model="newTitle.theme"
-        @change="judgeUniqueTheme">
-      <label for="user_name">なまえ</label>
-      <input
-        type="text"
-        id="user_name"
-        v-model="newTitle.user_name">
-      <button
-        @click="handleCreateNewTitle(); doAdd()"
-      >お題を投稿する</button>
+    </div>
+    <div class="new-title-form">
+      <div class="new-title-form-wrapper">
+        <label for="theme">お題</label>
+        <input
+          type="text"
+          id="theme"
+          v-model="newTitle.theme"
+          @change="judgeUniqueTheme">
+        <label for="user_name">なまえ</label>
+        <input
+          type="text"
+          id="user_name"
+          v-model="newTitle.user_name">
+        <button
+          @click="handleCreateNewTitle(); doAdd()"
+        >お題を投稿する</button>
+      </div>
     </div>
   </div>
 </template>
@@ -96,21 +100,35 @@ export default {
 <style scoped>
 
 #title-index {
+  min-height: 100vh;
   background-color: #bccfc9;
 }
 
 .container {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
 }
 
 .title {
   width: 20%;
-  margin: 50px auto;
   padding: 10px;
+  margin: 50px auto;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 5px 5px #8799ad;
+}
+
+.new-title-form {
+  bottom: 0;
+  width: 100%;
+  position: sticky;
+  padding: 10px;
+  background-color: #eee;
+}
+
+.new-title-form-wrapper {
+  width: 80%;
+  margin: 0 auto;
 }
 
 ul {
@@ -128,22 +146,25 @@ ul li {
   box-shadow: 5px 5px #8799ad;
 }
 
+label {
+  padding: 10px;
+}
+
 input {
   border: none;
   margin: 10px;
   padding: 10px;
-  border-radius: 10px;
   color: #8799ad;
+  border-radius: 10px;
   box-shadow: 5px 5px #8799ad;
 }
 
 button {
-  width: 50%;
+  margin: 10px;
   border: none;
   padding: 10px;
   color: #8799ad;
   border-radius: 10px;
-  margin-bottom: 30px;
   background-color: #fff;
   box-shadow: 5px 5px #8799ad;
 }

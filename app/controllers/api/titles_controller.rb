@@ -2,7 +2,7 @@ class Api::TitlesController < ApplicationController
   before_action :set_title, only: [:show]
 
   def index
-    @titles = Title.all
+    @titles = Title.all.order(created_at: :desc)
     render json: @titles
   end
 
