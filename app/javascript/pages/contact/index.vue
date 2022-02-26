@@ -1,6 +1,6 @@
 <template>
   <div id="contact-page">
-    <transition name="fade" appear>
+    <transition name="drop" appear>
       <h3>お問合せ</h3>
     </transition>
   </div>

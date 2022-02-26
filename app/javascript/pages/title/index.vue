@@ -1,6 +1,8 @@
 <template>
   <div id="title-index">
-    <h3>お題一覧</h3>
+    <transition name="drop" appear>
+      <h3>お題一覧</h3>
+    </transition>
     <div class="flex-column">
       <div class="container">
         <transition-group
@@ -10,34 +12,41 @@
           @after-enter="afterEnter"
           @enter-cancelled="afterEnter"
         >
-          <li v-for="(title, index) in titles" :data-index="index" :key="title">
+          <li
+            v-for="(title, index) in titles" :data-index="index"
+            :key="title">
             {{ title.id }} . {{ title.theme }} - {{ title.user_name }}
+            <router-link
+            :to="{name: 'TitleShow',
+            params: {id: title.id}}">お題詳細</router-link>
           </li>
         </transition-group>
       </div>
-      <div class="new-title-form">
-        <div class="new-title-wrapper">
-          <p class="add-title">お題投稿フォーム</p>
-          <label for="theme">お題</label>
-          <br>
-          <input
-            type="text"
-            id="theme"
-            v-model="newTitle.theme"
-            @change="judgeUniqueTheme">
-          <br>
-          <label for="user_name">お名前</label>
-          <br>
-          <input
-            type="text"
-            id="user_name"
-            v-model="newTitle.user_name">
-          <br>
-          <button
-            @click="handleCreateNewTitle(); doAdd()"
-          >お題を投稿する</button>
+      <transition name="drop" appear>
+        <div class="new-title-form">
+          <div class="new-title-wrapper">
+            <p class="add-title">お題投稿フォーム</p>
+            <label for="theme">お題</label>
+            <br>
+            <input
+              type="text"
+              id="theme"
+              v-model="newTitle.theme"
+              @change="judgeUniqueTheme">
+            <br>
+            <label for="user_name">お名前</label>
+            <br>
+            <input
+              type="text"
+              id="user_name"
+              v-model="newTitle.user_name">
+            <br>
+            <button
+              @click="handleCreateNewTitle(); doAdd()"
+            >お題を投稿する</button>
+          </div>
         </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -48,7 +57,6 @@ export default {
   name: 'TitleIndex',
   data() {
     return {
-      message: 'お題一覧',
       addEnter: false,
       newTitle: {
         theme: '',
@@ -57,10 +65,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['titles']),
+    ...mapGetters(['titles', 'replies']),
   },
   methods: {
-    ...mapActions(['createNewTitle', 'fetchTitles']),
+    ...mapActions([
+      'fetchTitles',
+      'createNewTitle',
+      'createNewReplies',
+    ]),
     doAdd() {
       //お題の追加ならフラグを立てる
       this.addEnter = true
@@ -149,6 +161,14 @@ ul li {
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 5px 5px #8799ad;
+}
+
+li a {
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #8799ad;
 }
 
 label {

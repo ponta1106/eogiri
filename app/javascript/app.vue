@@ -14,7 +14,7 @@ export default {
   components: {
     SharedHeader,
     SharedFooter
-  },
+  }
 }
 </script>
 
@@ -44,9 +44,19 @@ h3 {
   background-color: #8799ad;
 }
 
+.drop-enter-active {
+  transition: opacity .5s,
+              transform .5s;
+}
+
+.drop-enter-from {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
 .fade-enter-active {
-  transition: opacity 1s,
-              transform 1s;
+  transition: opacity .5s,
+              transform .5s;
 }
 
 .fade-enter-from {
