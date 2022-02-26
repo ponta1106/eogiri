@@ -43,9 +43,9 @@ li {
 }
 
 li a {
+  cursor: pointer;
   color: #7689ad;
   text-decoration: none;
-  cursor: pointer;
 }
 
 </style>
