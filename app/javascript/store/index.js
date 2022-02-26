@@ -15,7 +15,7 @@ export const store = createStore({
       state.titles = titles
     },
     addTitle: (state, title) => {
-      state.titles.push(title)
+      state.titles.unshift(title)
     }
   },
   actions: {
