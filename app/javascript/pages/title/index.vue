@@ -2,59 +2,94 @@
   <div id="title-index">
     <p class="title">{{ message }}</p>
     <div class="container">
-      <ul>
-        <li v-for="title in titles" :key="title.index">
-          {{ title.id }} - {{ title.theme }} - {{ title.user_name }}
+      <transition-group
+        name="fade"
+        tag="ul"
+        @before-enter="beforeEnter"
+        @after-enter="afterEnter"
+        @enter-cancelled="afterEnter"
+      >
+        <li v-for="(title, index) in titles" :data-index="index" :key="title">
+          {{ title.id }} . {{ title.theme }} - {{ title.user_name }}
         </li>
-      </ul>
-      <label for="theme">タイトル</label>
-      <input type="text" id="theme" v-model="newTitle.theme">
-      <br>
-      <label for="user_name">ユーザー名</label>
-      <input type="text" id="user_name" v-model="newTitle.user_name">
-      <br>
+      </transition-group>
+      <label for="theme">お題</label>
+      <input
+        type="text"
+        id="theme"
+        v-model="newTitle.theme"
+        @change="judgeUniqueTheme">
+      <label for="user_name">なまえ</label>
+      <input
+        type="text"
+        id="user_name"
+        v-model="newTitle.user_name">
       <button
-      @click="handleCreateNewTitle"
+        @click="handleCreateNewTitle(); doAdd()"
       >お題を投稿する</button>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'TitleIndex',
   data() {
     return {
       message: 'お題一覧',
+      addEnter: false,
+      current: 1,
       newTitle: {
-        user_name: '',
-        theme: ''
+        theme: '',
+        user_name: ''
       }
     }
   },
   computed: {
-    ...mapGetters(['titles'])
+    ...mapGetters(['titles']),
   },
   methods: {
     ...mapActions(['createNewTitle', 'fetchTitles']),
-    fetchReplies() {
-      axios.get("api/titles/1/replies")
-        .then(res => this.replies = res.data)
-        .catch(err => console.log(err.status));
+      // トランジション開始でインデックス*100ms分のディレイを付与
+    doAdd() {
+      // 追加ならフラグを立てる
+      this.addEnter = true
+    },
+    beforeEnter(el) {
+      this.$nextTick(() => {
+        if (!this.addEnter) {
+          // 追加でなければディレイを付与
+          el.style.transitionDelay = 100 * parseInt(el.dataset.index, 10) + 'ms'
+        } else {
+          // 追加ならフラグを消すだけ
+          this.addEnter = false
+        }
+      })
+    },
+    // トランジション完了またはキャンセルでディレイを削除
+    afterEnter(el) {
+      el.style.transitionDelay = ''
     },
     async handleCreateNewTitle() {
-      try{
-        await this.createNewTitle(this.newTitle);
-      } catch(error) {
-        console.log(error)
+      // 空欄だったら、投稿せずに、アラートを表示します
+      if(this.newTitle.user_name == '' || this.newTitle.theme == ''){
+        alert('「お題」と「なまえ」を入力してください。');
+        return;
+      } else {
+        try{
+          await this.createNewTitle(this.newTitle)
+          this.newTitle.theme = ''
+          this.newTitle.user_name = ''
+        } catch(error) {
+          console.log(error)
+        }
       }
     }
   },
   created() {
     this.fetchTitles();
-  }
+  },
 }
 </script>
 
@@ -81,6 +116,8 @@ export default {
 ul {
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 ul li {
@@ -96,6 +133,7 @@ input {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+  color: #8799ad;
   box-shadow: 5px 5px #8799ad;
 }
 
@@ -106,6 +144,7 @@ button {
   color: #8799ad;
   border-radius: 10px;
   margin-bottom: 30px;
+  background-color: #fff;
   box-shadow: 5px 5px #8799ad;
 }
 
