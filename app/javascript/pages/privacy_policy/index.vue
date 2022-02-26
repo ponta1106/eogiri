@@ -1,7 +1,7 @@
 <template>
   <div id="privacy_policy-page">
     <transition name="fade" appear>
-      <p>{{ message }}</p>
+      <h3>プライバシーポリシー</h3>
     </transition>
   </div>
 </template>
@@ -9,11 +9,6 @@
 <script>
 export default {
   name: 'PrivacyPolicy',
-  data() {
-    return {
-      message: "This is Privacy Policy Page!"
-    }
-  }
 }
 </script>
 

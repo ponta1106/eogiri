@@ -1,35 +1,42 @@
 <template>
   <div id="title-index">
-    <p class="title">{{ message }}</p>
-    <div class="container">
-      <transition-group
-        name="fade"
-        tag="ul"
-        @before-enter="beforeEnter"
-        @after-enter="afterEnter"
-        @enter-cancelled="afterEnter"
-      >
-        <li v-for="(title, index) in titles" :data-index="index" :key="title">
-          {{ title.id }} . {{ title.theme }} - {{ title.user_name }}
-        </li>
-      </transition-group>
-    </div>
-    <div class="new-title-form">
-      <div class="new-title-form-wrapper">
-        <label for="theme">お題</label>
-        <input
-          type="text"
-          id="theme"
-          v-model="newTitle.theme"
-          @change="judgeUniqueTheme">
-        <label for="user_name">なまえ</label>
-        <input
-          type="text"
-          id="user_name"
-          v-model="newTitle.user_name">
-        <button
-          @click="handleCreateNewTitle(); doAdd()"
-        >お題を投稿する</button>
+    <h3>お題一覧</h3>
+    <div class="flex-column">
+      <div class="container">
+        <transition-group
+          name="fade"
+          tag="ul"
+          @before-enter="beforeEnter"
+          @after-enter="afterEnter"
+          @enter-cancelled="afterEnter"
+        >
+          <li v-for="(title, index) in titles" :data-index="index" :key="title">
+            {{ title.id }} . {{ title.theme }} - {{ title.user_name }}
+          </li>
+        </transition-group>
+      </div>
+      <div class="new-title-form">
+        <div class="new-title-wrapper">
+          <p class="add-title">お題投稿フォーム</p>
+          <label for="theme">お題</label>
+          <br>
+          <input
+            type="text"
+            id="theme"
+            v-model="newTitle.theme"
+            @change="judgeUniqueTheme">
+          <br>
+          <label for="user_name">お名前</label>
+          <br>
+          <input
+            type="text"
+            id="user_name"
+            v-model="newTitle.user_name">
+          <br>
+          <button
+            @click="handleCreateNewTitle(); doAdd()"
+          >お題を投稿する</button>
+        </div>
       </div>
     </div>
   </div>
@@ -43,7 +50,6 @@ export default {
     return {
       message: 'お題一覧',
       addEnter: false,
-      current: 1,
       newTitle: {
         theme: '',
         user_name: ''
@@ -55,18 +61,16 @@ export default {
   },
   methods: {
     ...mapActions(['createNewTitle', 'fetchTitles']),
-      // トランジション開始でインデックス*100ms分のディレイを付与
     doAdd() {
-      // 追加ならフラグを立てる
+      //お題の追加ならフラグを立てる
       this.addEnter = true
     },
+    // トランジション開始でインデックス*100ms分のディレイを付与
     beforeEnter(el) {
       this.$nextTick(() => {
         if (!this.addEnter) {
-          // 追加でなければディレイを付与
-          el.style.transitionDelay = 100 * parseInt(el.dataset.index, 10) + 'ms'
+          el.style.transitionDelay = 200 * parseInt(el.dataset.index, 10) + 'ms'
         } else {
-          // 追加ならフラグを消すだけ
           this.addEnter = false
         }
       })
@@ -100,67 +104,70 @@ export default {
 <style scoped>
 
 #title-index {
-  min-height: 100vh;
   background-color: #bccfc9;
 }
 
-.container {
-  width: 80%;
-  margin: 0 auto;
+.flex-column {
+  display: flex;
 }
 
-.title {
-  width: 20%;
-  padding: 10px;
-  margin: 50px auto;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 5px 5px #8799ad;
+.container {
+  width: 60%;
+  margin-left: 50px;
+  min-height: 100vh;
 }
 
 .new-title-form {
-  bottom: 0;
-  width: 100%;
-  position: sticky;
-  padding: 10px;
+  right: 20px;
+  bottom: 80px;
+  padding: 20px;
+  position: fixed;
+  border-radius: 10px;
   background-color: #eee;
 }
 
-.new-title-form-wrapper {
-  width: 80%;
+.new-title-wrapper {
+  width: 90%;
+  padding: 10px;
   margin: 0 auto;
+}
+
+.add-title {
+  text-align: center;
 }
 
 ul {
   padding: 0;
-  list-style: none;
   display: flex;
-  flex-wrap: wrap;
+  list-style: none;
+  flex-direction: column;
 }
 
 ul li {
   margin: 20px;
-  padding: 20px 10px;
+  padding: 20px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 5px 5px #8799ad;
 }
 
 label {
-  padding: 10px;
+  margin: 5px;
 }
 
 input {
+  display: flex;
+  width: 80%;
   border: none;
-  margin: 10px;
   padding: 10px;
   color: #8799ad;
+  margin: 10px 0;
   border-radius: 10px;
   box-shadow: 5px 5px #8799ad;
 }
 
 button {
-  margin: 10px;
+  width: 93%;
   border: none;
   padding: 10px;
   color: #8799ad;

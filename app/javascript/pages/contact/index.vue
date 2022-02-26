@@ -1,19 +1,14 @@
 <template>
   <div id="contact-page">
     <transition name="fade" appear>
-      <p>{{ message }}</p>
+      <h3>お問合せ</h3>
     </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Contact',
-  data() {
-    return {
-      message: "This is Contact Page!"
-    }
-  }
+  name: 'Contact'
 }
 </script>
 

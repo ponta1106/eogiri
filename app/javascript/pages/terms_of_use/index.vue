@@ -1,19 +1,14 @@
 <template>
   <div id="terms_of_use-page">
     <transition name="fade" appear>
-      <p>{{ message }}</p>
+      <h3>利用規約</h3>
     </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TermsOfUse',
-  data() {
-    return {
-      message: "This is Terms Of Use Page!"
-    }
-  }
+  name: 'TermsOfUse'
 }
 </script>
 

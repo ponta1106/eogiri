@@ -1,19 +1,14 @@
 <template>
   <div id="top-page">
     <transition name="fade" appear>
-      <p>{{ message }}</p>
+      <h3>絵大喜利</h3>
     </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Top',
-  data() {
-    return {
-      message: '絵大喜利'
-    }
-  }
+  name: 'Top'
 }
 </script>
 
