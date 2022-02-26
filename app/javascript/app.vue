@@ -23,7 +23,8 @@ export default {
 body {
   margin: 0;
   color: #8799ad;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #e5e2df;
+  font-family: 'Kosugi Maru', sans-serif;
 }
 
 #app {
@@ -33,21 +34,24 @@ body {
   justify-content: space-between;
 }
 
-p {
-  font-size: 2em;
+h3 {
+  width: 200px;
+  padding: 20px;
+  margin: 20px auto;
   text-align: center;
+  border-radius: 10px;
+  color: #fff;
+  background-color: #8799ad;
 }
 
-.fade-enter-active,
-.fade-leave-active {
+.fade-enter-active {
   transition: opacity 1s,
               transform 1s;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.fade-enter-from {
   opacity: 0;
-  transform: translateY(100px);
+  transform: translateX(-100px);
 }
 
 </style>
