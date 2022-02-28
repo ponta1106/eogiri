@@ -33,7 +33,7 @@ const routes = [
     component: TitleIndex,
   },
   {
-    path: '/titles/:id',
+    path: '/titles/:id/replies',
     name: 'TitleShow',
     component: TitleShow,
   },
