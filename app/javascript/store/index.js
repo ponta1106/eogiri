@@ -27,39 +27,43 @@ export const store = createStore({
     }
   },
   actions: {
+    //お題一覧を取得
     fetchTitles({ commit }) {
       return axios.get('api/titles')
-        .then(res => {
-          commit('setTitles', res.data)
-        })
-        .catch(err => {
-          console.log(err.response)
-          alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
-        })
+      .then(res => {
+        commit('setTitles', res.data)
+      })
+      .catch(err => {
+        console.log(err.response)
+        alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
+      })
     },
-    fetchReplies({ commit }) {
-      return axios.get(`/api/titles/${this.$route.params.id}/replies`)
-        .then(res => {
-          commit('setReplies', res.data)
-        })
-        .catch(err => {
-          console.log(err.response)
-          alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
-        })
-    },
+    //お題一覧を新規投稿
     createNewTitle({ commit }, title) {
-      return axios.post('api/titles', title)
-        .then(res => {
-          commit('addTitle', res.data)
-        })
-        .catch(err => {
-          console.log(err.response)
-          alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
-        })
+      return axios.post('/api/titles', title)
+      .then(res => {
+        commit('addTitle', res.data)
+      })
+      .catch(err => {
+        console.log(err.response)
+        alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
+      })
     },
+    //お題の回答一覧を取得
+    fetchReplies({ commit }, title_id) {
+      return axios.get(`/api/titles/${ title_id }/replies`)
+      .then(res => {
+        commit('setReplies', res.data)
+      })
+      .catch(err => {
+        console.log(err.response)
+        alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
+      })
+    },
+    //お題の回答を投稿
     createNewReply({ commit }, reply) {
-      return axios.post('api/titles/:id/replies', reply)
-        .then(res => {
+      return axios.post('/api/titles/${title_id}/replies', reply)
+      .then(res => {
           commit('addReply', res.data)
         })
         .catch(err => {

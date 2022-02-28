@@ -12,14 +12,25 @@
           @after-enter="afterEnter"
           @enter-cancelled="afterEnter"
         >
-          <li
+          <div
             v-for="(title, index) in titles" :data-index="index"
-            :key="title">
-            {{ title.id }} . {{ title.theme }} - {{ title.user_name }}
-            <router-link
-            :to="{name: 'TitleShow',
-            params: {id: title.id}}">お題詳細</router-link>
-          </li>
+            :key="title"
+            class="title-list"
+          >
+            <li class="title">
+              <div>
+                {{ title.id }} . {{ title.theme }} - {{ title.user_name }}
+              </div>
+              <div>
+                <router-link
+                  :to="{
+                    name: 'TitleShow',
+                    params: { id: title.id }
+                  }"
+                >お題詳細</router-link>
+              </div>
+            </li>
+          </div>
         </transition-group>
       </div>
       <transition name="drop" appear>
@@ -65,7 +76,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['titles', 'replies']),
+    ...mapGetters([
+      'titles',
+      'replies'
+    ]),
   },
   methods: {
     ...mapActions([
@@ -129,6 +143,34 @@ export default {
   min-height: 100vh;
 }
 
+ul {
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul li {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 5px 5px #8799ad;
+}
+
+ul li a {
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #8799ad;
+}
+
 .new-title-form {
   right: 20px;
   bottom: 80px;
@@ -146,29 +188,6 @@ export default {
 
 .add-title {
   text-align: center;
-}
-
-ul {
-  padding: 0;
-  display: flex;
-  list-style: none;
-  flex-direction: column;
-}
-
-ul li {
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 5px 5px #8799ad;
-}
-
-li a {
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  background-color: #8799ad;
 }
 
 label {
