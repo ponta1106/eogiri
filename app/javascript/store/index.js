@@ -1,7 +1,16 @@
 import axios from 'axios'
 import { createStore } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 export const store = createStore({
+  // ページをリロードしてもstateのデータが消えないように設定
+  plugins: [createPersistedState(
+    { // ストレージのキーを指定
+      key: 'appName',
+      // ストレージの種類を指定
+      storage: window.sessionStorage
+    }
+  )],
   state () {
     return {
       titles: [],
