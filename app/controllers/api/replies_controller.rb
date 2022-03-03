@@ -8,7 +8,6 @@ class Api::RepliesController < ApplicationController
 
   def create
     @reply = Reply.new(reply_params)
-    @reply.title_id = @title
     if @reply.save
       render json: @reply
     else
@@ -23,7 +22,7 @@ class Api::RepliesController < ApplicationController
   end
 
   def reply_params
-    params.require(:reply).permit(:title_id, :user_name, :reply_title)
+    params.require(:reply).permit(:title_id, :user_name, :reply_title, :favorite)
   end
 
 end
