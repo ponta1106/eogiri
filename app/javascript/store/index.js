@@ -70,8 +70,8 @@ export const store = createStore({
       })
     },
     //お題の回答を投稿
-    createNewReply({ commit }, reply) {
-      return axios.post('/api/titles/${title_id}/replies', reply)
+    createNewReply({ commit }, reply ) {
+      return axios.post(`/api/titles/${ reply.title_id }/replies`, reply)
       .then(res => {
           commit('addReply', res.data)
         })

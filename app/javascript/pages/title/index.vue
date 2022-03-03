@@ -108,7 +108,7 @@ export default {
     async handleCreateNewTitle() {
       // 空欄だったら、投稿せずに、アラートを表示します
       if(this.newTitle.user_name == '' || this.newTitle.theme == ''){
-        alert('「お題」と「なまえ」を入力してください。');
+        alert('「お題」と「お名前」を入力してください。');
         return;
       } else {
         try{
@@ -178,6 +178,7 @@ ul li a {
   position: fixed;
   border-radius: 10px;
   background-color: #eee;
+  box-shadow: 5px 5px #8799ad;
 }
 
 .new-title-wrapper {
