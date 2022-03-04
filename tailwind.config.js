@@ -5,7 +5,11 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'kosugimaru': ['"Kosugi Maru"', 'sans-serif'],
+      },
+    },
   },
   variants: {},
   plugins: [],

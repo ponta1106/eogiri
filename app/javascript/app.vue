@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="font-kosugimaru text-gray-800">
     <SharedHeader />
-      <router-view style="flex-grow: 1;"/>
+      <router-view />
     <SharedFooter />
   </div>
 </template>
