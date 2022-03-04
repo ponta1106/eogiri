@@ -11,11 +11,3 @@ export default {
   name: 'TermsOfUse'
 }
 </script>
-
-<style scoped>
-
-#terms_of_use-page {
-  background-color: lemonchiffon;
-}
-
-</style>

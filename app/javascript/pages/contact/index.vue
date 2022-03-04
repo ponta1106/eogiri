@@ -11,11 +11,3 @@ export default {
   name: 'Contact'
 }
 </script>
-
-<style scoped>
-
-#contact-page {
-  background-color: #eddbdb;
-}
-
-</style>

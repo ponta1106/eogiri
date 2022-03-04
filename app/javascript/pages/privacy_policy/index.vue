@@ -11,11 +11,3 @@ export default {
   name: 'PrivacyPolicy',
 }
 </script>
-
-<style scoped>
-
-#privacy_policy-page {
-  background-color: wheat;
-}
-
-</style>

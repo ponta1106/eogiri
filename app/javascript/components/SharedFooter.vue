@@ -25,27 +25,3 @@ export default {
   name: 'SharedFooter'
 }
 </script>
-
-<style scoped>
-
-footer {
-  background: #eee;
-}
-
-ul {
-  display: flex;
-  list-style: none;
-  justify-content: space-around;
-}
-
-li {
-  margin-right: 20px;
-}
-
-li a {
-  cursor: pointer;
-  color: #7689ad;
-  text-decoration: none;
-}
-
-</style>
