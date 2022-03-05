@@ -1,42 +1,47 @@
 <template>
-  <div id="title-show">
-    <transition name="drop" appear>
-      <h3>お題 : {{ selectedTitle.theme }}
-      </h3>
-    </transition>
-    <div class="container">
-      <router-link :to="{name: 'TitleIndex'}">お題一覧へ</router-link>
-      <ul>
+  <div id="title-show" class="relative">
+    <div class="container p-10 m-10 mx-auto bg-blue-100 rounded-md text-blue-900 rounded-md rounded-md">
+      <h3 class="text-3xl text-center mb-2">{{ selectedTitle.theme }} <span><small>{{ selectedTitle.user_name }}</small></span></h3>
+      <ul class="h-64 overflow-auto">
         <li
           v-for="(reply, index) in replies" :data-index="index"
-          :key="reply">
+          :key="reply"
+          class="hover:bg-blue-200 rounded-md p-2"
+        >
           {{ index }} . {{ reply.reply_title }} - {{ reply.user_name }}
         </li>
       </ul>
-      <transition name="drop" appear>
-        <div class="new-reply-form">
-          <div class="new-reply-wrapper">
-            <p class="add-reply">回答投稿フォーム</p>
-            <label for="reply_title">回答</label>
-            <br>
-            <input
-              type="text"
-              id="reply_title"
-              v-model="newReply.reply_title">
-            <br>
-            <label for="user_name">お名前</label>
-            <br>
-            <input
-              type="text"
-              id="user_name"
-              v-model="newReply.user_name">
-            <br>
-            <button
-              @click="handleCreateNewReply"
-            >お題を投稿する</button>
+    </div>
+    <div class="container mx-auto">
+      <form class="md:flex bg-gray-200 absolute bottom-0 left-0 w-screen p-3 justify-around">
+        <div class="md:flex md:items-center md:mb-0 mb-6">
+          <div>
+            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-theme">
+              回答
+            </label>
+          </div>
+          <div>
+            <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="inline-theme" type="text" v-model="newReply.reply_title">
           </div>
         </div>
-      </transition>
+        <div class="md:flex md:items-center md:mb-0 mb-6">
+          <div>
+            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-user-name">
+              お名前
+            </label>
+          </div>
+          <div>
+            <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="inline-user-name" type="text" v-model="newReply.user_name">
+          </div>
+        </div>
+        <div class="md:flex md:items-center md:mb-0 mb-6">
+          <div>
+            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" @click="handleCreateNewReply(); doAdd()">
+              回答
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
