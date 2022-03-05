@@ -1,19 +1,9 @@
 <template>
   <div id="top-page">
-    <transition name="drop" appear>
-      <h3>絵大喜利</h3>
-    </transition>
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-      <div class="md:flex">
-        <div class="md:flex-shrink-0">
-          <img class="h-48 w-full object-cover md:w-48" src="https://placehold.jp/500x500.png" alt="Man looking at item at a store">
-        </div>
-        <div class="p-8">
-          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
-          <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Finding customers for your new business</a>
-          <p class="mt-2 text-gray-500">Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your first customers.</p>
-        </div>
-      </div>
+    <div class="container p-20 m-20 mx-auto text-center bg-blue-100 rounded-md text-blue-900">
+      <small>えおおぎり</small>
+      <h3 class="text-5xl mt-2 mb-5">絵大喜利</h3>
+      <p>お題に対して絵で答える大喜利アプリです</p>
     </div>
   </div>
 </template>
