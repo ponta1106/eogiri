@@ -1,7 +1,7 @@
 <template>
   <div id="title-show" class="relative">
     <div class="container p-10 m-10 mx-auto bg-blue-100 rounded-md text-blue-900 rounded-md rounded-md">
-      <h3 class="text-3xl text-center mb-2">{{ selectedTitle.theme }} <span><small>{{ selectedTitle.user_name }}</small></span></h3>
+      <h3 class="text-3xl text-center mb-2">{{ selectedTitle.theme }} :  <span><small>{{ selectedTitle.user_name }} の回答一覧</small></span></h3>
       <ul class="h-64 overflow-auto">
         <li
           v-for="(reply, index) in replies" :data-index="index"
@@ -9,6 +9,9 @@
           class="hover:bg-blue-200 rounded-md p-2"
         >
           {{ index }} . {{ reply.reply_title }} - {{ reply.user_name }}
+        </li>
+        <li v-show="this.replies.length == 0">
+          このお題は、まだ回答がありません。画面下部のフォームから回答してくれたら嬉しいです。
         </li>
       </ul>
     </div>
