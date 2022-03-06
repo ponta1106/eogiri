@@ -33,7 +33,32 @@ export const store = createStore({
     },
     addReply: (state, reply) => {
       state.replies.unshift(reply)
-    }
+    },
+    deleteTitle: (state, deleteTitle) => {
+      state.titles = state.titles.filter(title => {
+        return title.id != deleteTitle.id
+      })
+    },
+    // 回答削除機能を実装
+    deleteReply: (state, deleteReply) => {
+      state.replies = state.replies.filter(reply => {
+        return reply.id != deleteReply.id
+      })
+    },
+    // お題編集機能
+    updateReply: (state, updateReply) => {
+      const index = state.replies.findIndex(reply => {
+        return reply.id == updateReply.id
+      })
+      state.replies.splice(index, 1, updateReply)
+    },
+    // 回答編集機能
+    updateReply: (state, updateReply) => {
+      const index = state.replies.findIndex(reply => {
+        return reply.id == updateReply.id
+      })
+      state.replies.splice(index, 1, updateReply)
+    },
   },
   actions: {
     //お題一覧を取得
@@ -47,7 +72,7 @@ export const store = createStore({
         alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
       })
     },
-    //お題一覧を新規投稿
+    //お題を新規投稿
     createNewTitle({ commit }, title) {
       return axios.post('/api/titles', title)
       .then(res => {
@@ -58,9 +83,20 @@ export const store = createStore({
         alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
       })
     },
-    //お題の回答一覧を取得
-    fetchReplies({ commit }, title_id) {
-      return axios.get(`/api/titles/${ title_id }/replies`)
+    //お題削除機能
+    deleteTitle({ commit }, title) {
+      return axios.delete(`/api/titles/${title.id}`)
+        .then(res => {
+          commit('deleteTitle', res.data)
+        })
+        .catch(err => {
+          console.log(err.response)
+          alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
+        })
+    },
+    //回答一覧を取得
+    fetchReplies({ commit }) {
+      return axios.get('api/replies')
       .then(res => {
         commit('setReplies', res.data)
       })
@@ -69,16 +105,38 @@ export const store = createStore({
         alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
       })
     },
-    //お題の回答を投稿
-    createNewReply({ commit }, reply ) {
-      return axios.post(`/api/titles/${ reply.title_id }/replies`, reply)
+    //回答の投稿
+    createNewReply({ commit }, reply) {
+      return axios.post('/api/replies', reply)
       .then(res => {
-          commit('addReply', res.data)
-        })
-        .catch(err => {
-          console.log(err.response)
-          alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
-        })
+        commit('addReply', res.data)
+      })
+      .catch(err => {
+        console.log(err.response)
+        alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
+      })
     },
+    //回答の編集
+    updateReply({ commit }, reply) {
+      return axios.patch(`/api/replies/${ reply.id }`, reply)
+      .then(res => {
+        commit('updateReply', res.data)
+      })
+      .catch(err => {
+        console.log(err.response)
+        alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
+      })
+    },
+    //回答削除機能
+    deleteReply({ commit }, reply) {
+      return axios.delete(`/api/replies/${ reply.id }`)
+      .then(res => {
+        commit('deleteReply', res.data)
+      })
+      .catch(err => {
+        console.log(err.response)
+        alert('通信に失敗しました。インターネットが繋がっているか確認し、再度実行してください。')
+      })
+    }
   }
 })

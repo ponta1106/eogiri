@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Top from '../pages/top';
+import Top from '../pages/top/top';
 import Contact from '../pages/contact';
 import PrivacyPolicy from '../pages/privacy_policy';
 import TermsOfUse from '../pages/terms_of_use';
-import TitleIndex from '../pages/title/index';
+import Titles from '../pages/title/titles';
 import TitleShow from '../pages/title/show';
 
 const routes = [
@@ -29,11 +29,11 @@ const routes = [
   },
   {
     path: '/titles',
-    name: 'TitleIndex',
-    component: TitleIndex,
+    name: 'Titles',
+    component: Titles,
   },
   {
-    path: '/titles/:id/replies',
+    path: '/titles/:id',
     name: 'TitleShow',
     component: TitleShow,
   },

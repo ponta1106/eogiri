@@ -1,16 +1,28 @@
 <template>
   <div id="title-show" class="relative">
-    <div class="container p-10 m-10 mx-auto bg-blue-100 rounded-md text-blue-900 rounded-md rounded-md">
+    <div class="container h-5/6 p-3 m-3 mx-auto bg-blue-100 text-blue-900">
       <h3 class="text-3xl text-center mb-2">{{ selectedTitle.theme }} :  <span><small>{{ selectedTitle.user_name }} の回答一覧</small></span></h3>
-      <ul class="h-64 overflow-auto">
+      <ul class="overflow-auto h-5/6">
         <li
-          v-for="(reply, index) in replies" :data-index="index"
+          v-for="(reply, index) in filteredReplies" :data-index="index"
           :key="reply"
-          class="hover:bg-blue-200 rounded-md p-2"
+          class="hover:bg-blue-200 rounded-md my-2 p-2 flex justify-between"
         >
-          {{ index }} . {{ reply.reply_title }} - {{ reply.user_name }}
+          <dir>
+            {{ reply.id }} - {{ reply.reply_title }} - {{ reply.user_name }}
+          </dir>
+          <div>
+            <button
+              @click="handleUpdateReply(reply)"
+              class="rounded m-2 p-2 bg-blue-300 text-blue-900"
+            >{{ reply.favorite }} <small>いいね！</small></button>
+            <button
+              class="rounded m-2 p-2 bg-red-300 text-red-900"
+              @click="handleDeleteReply(reply)"
+            >削除</button>
+          </div>
         </li>
-        <li v-show="this.replies.length == 0">
+        <li v-show="filteredReplies.length == 0">
           このお題は、まだ回答がありません。画面下部のフォームから回答してくれたら嬉しいです。
         </li>
       </ul>
@@ -39,7 +51,7 @@
         </div>
         <div class="md:flex md:items-center md:mb-0 mb-6">
           <div>
-            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" @click="handleCreateNewReply(); doAdd()">
+            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-red text-white font-bold py-2 px-4 rounded" type="button" @click="handleCreateNewReply">
               回答
             </button>
           </div>
@@ -59,6 +71,7 @@ export default {
         title_id: null,
         reply_title: '',
         user_name: '',
+        favorite: 0,
       }
     }
   },
@@ -67,17 +80,24 @@ export default {
       'titles',
       'replies'
     ]),
+    //rootの:idと一致するtitleのみを取得
     selectedTitle() {
-      //rootの:title_idと一致するtitleのみを取得
       return this.titles.find(title => {
         return title.id == this.$route.params.id;
+      })
+    },
+    //rootの:title_idと一致するrepliyのみを取得
+    filteredReplies() {
+      return this.replies.filter(reply => {
+        return reply.title_id == this.selectedTitle.id;
       })
     }
   },
   methods: {
     ...mapActions([
-      'fetchReplies',
       'createNewReply',
+      'updateReply',
+      'deleteReply'
     ]),
     async handleCreateNewReply() {
       // 空欄だったら、投稿せずに、アラートを表示します
@@ -94,12 +114,22 @@ export default {
           console.log(error)
         }
       }
+    },
+    async handleUpdateReply(reply) {
+      reply.favorite += 1;
+      try {
+        await this.updateReply(reply);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async handleDeleteReply(reply) {
+      try {
+        await this.deleteReply(reply);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  },
-  created() {
-    const route = this.$route.params.id
-    this.fetchReplies(route);
   }
-
 }
 </script>

@@ -1,8 +1,7 @@
 class Api::RepliesController < ApplicationController
-  before_action :set_title
 
   def index
-    @replies = Reply.where(title_id: @title)
+    @replies = Reply.all.order(created_at: :desc)
     render json: @replies
   end
 
@@ -15,14 +14,25 @@ class Api::RepliesController < ApplicationController
     end
   end
 
-  private
-
-  def set_title
-    @title = Title.find(params[:title_id])
+  def update
+    @reply = Reply.find(params[:id])
+    if @reply.update(reply_params)
+      render json: @reply
+    else
+      render json: @reply.errors, status: :bad_request
+    end
   end
 
+  def destroy
+    @reply = Reply.find(params[:id])
+    @reply.destroy!
+    render json: @reply
+  end
+
+  private
+
   def reply_params
-    params.require(:reply).permit(:title_id, :user_name, :reply_title, :favorite)
+    params.require(:reply).permit(:id, :created_at, :user_name, :reply_title, :favorite, :updated_at, :title_id)
   end
 
 end
