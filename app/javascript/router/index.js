@@ -4,7 +4,7 @@ import Contact from '../pages/contact';
 import PrivacyPolicy from '../pages/privacy_policy';
 import TermsOfUse from '../pages/terms_of_use';
 import Titles from '../pages/title/titles';
-import Replies from '../pages/replies/replies';
+import TitleShow from '../pages/title/show';
 
 const routes = [
   {
@@ -33,9 +33,9 @@ const routes = [
     component: Titles,
   },
   {
-    path: '/titles/:id/replies',
-    name: 'Replies',
-    component: Replies,
+    path: '/titles/:id',
+    name: 'TitleShow',
+    component: TitleShow,
   },
 ]
 
