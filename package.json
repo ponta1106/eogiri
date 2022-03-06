@@ -1,6 +1,9 @@
 {
   "name": "eogiri",
   "private": true,
+  "scripts": {
+    "build": "NODE_ENV=production postcss /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/style.css -o /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/dist.css"
+  },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "4",
     "@rails/actioncable": "^6.0.0",
@@ -11,7 +14,6 @@
     "@vue/compiler-sfc": "^3.2.31",
     "autoprefixer": "^9",
     "axios": "^0.26.0",
-    "postcss": "^7",
     "postcss-loader": "4",
     "tailwindcss": "2.2.19",
     "turbolinks": "^5.2.0",
@@ -25,6 +27,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "@webpack-cli/serve": "^1.6.1",
+    "postcss": "^8.4.7",
+    "postcss-cli": "^9.1.0",
     "webpack-dev-server": "^4.7.4"
   }
 }
