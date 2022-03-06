@@ -1,28 +1,28 @@
 <template>
   <div id="title-index" class="relative">
-    <div class="container p-10 m-10 mx-auto bg-blue-100 text-blue-900 rounded-md">
-      <div class="container">
-        <h3 class="text-3xl text-center mb-2">お題一覧</h3>
-        <ul class="h-64 overflow-auto">
-          <li
-            v-for="(title, index) in titles" :data-index="index"
-            :key="title"
-            class="hover:bg-blue-200 rounded-md p-2"
-          >
+    <div class="container h-5/6 p-3 m-3 mx-auto bg-blue-100 text-blue-900">
+      <h3 class="text-3xl text-center mb-2">お題一覧</h3>
+      <ul class="overflow-auto h-5/6">
+        <li
+          v-for="(title, index) in titles" :data-index="index"
+          :key="title"
+          class="hover:bg-blue-200 rounded-md my-2 p-2 flex justify-between"
+        >
+          <dir>
             <router-link
               :to="{
-                name: 'Replies',
+                name: 'TitleShow',
                 params: { id: title.id }
               }"
             >{{ title.id }} . {{ title.theme }} - {{ title.user_name }}
             </router-link>
-            <button
-              class="p-2 bg-red-100"
-              @click="handleDeleteTitle(title)"
-            >お題を削除</button>
-          </li>
-        </ul>
-      </div>
+          </dir>
+          <button
+            class="rounded m-2 p-2 bg-red-300 text-red-900"
+            @click="handleDeleteTitle(title)"
+          >お題を削除</button>
+        </li>
+      </ul>
     </div>
     <div class="container mx-auto">
       <form class="md:flex bg-gray-200 absolute bottom-0 left-0 w-screen p-3 justify-around">
@@ -48,7 +48,7 @@
         </div>
         <div class="md:flex md:items-center">
           <div>
-            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-md" type="button" @click="handleCreateNewTitle(); doAdd()">
+            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-md" type="button" @click="handleCreateNewTitle">
               投稿
             </button>
           </div>
@@ -80,9 +80,9 @@ export default {
   methods: {
     ...mapActions([
       'fetchTitles',
+      'fetchReplies',
       'createNewTitle',
-      'createNewReplies',
-      'deleteTitle'
+      'deleteTitle',
     ]),
     doAdd() {
       //お題の追加ならフラグを立てる
@@ -126,7 +126,10 @@ export default {
     }
   },
   created() {
+    // お題一覧を取得
     this.fetchTitles();
+    // 回答一覧を取得
+    this.fetchReplies();
   },
 }
 </script>
