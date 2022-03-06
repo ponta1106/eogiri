@@ -1,5 +1,5 @@
 class Api::TitlesController < ApplicationController
-  before_action :set_title, only: [:show]
+  before_action :set_title, only: [:show, :update, :destroy]
 
   def index
     @titles = Title.all.order(created_at: :desc)
@@ -17,6 +17,11 @@ class Api::TitlesController < ApplicationController
     else
       render json: @title.errors, status: :bad_request
     end
+  end
+
+  def destroy
+    @title.destroy!
+    render json: @title
   end
 
   private
