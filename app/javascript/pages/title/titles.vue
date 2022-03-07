@@ -1,12 +1,12 @@
 <template>
-  <div id="title-index" class="relative">
-    <div class="container h-5/6 p-3 m-3 mx-auto bg-blue-100 text-blue-900">
-      <h3 class="text-3xl text-center mb-2">お題一覧</h3>
-      <ul class="overflow-auto h-5/6">
+  <div id="title-index">
+    <div class="container mx-auto h-5/6 w-5/6 p-3 m-3 bg-gray-200 filter drop-shadow-md rounded-md self-center">
+      <h3 class="text-3xl text-center m-3">お題一覧</h3>
+      <ul class="overflow-auto bg-white h-5/6 p-3 rounded-md">
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
-          class="hover:bg-blue-200 rounded-md my-2 p-2 flex justify-between"
+          class="hover:bg-blue-100 rounded-md my-2 p-2 flex justify-between"
         >
           <dir>
             <router-link
@@ -24,37 +24,35 @@
         </li>
       </ul>
     </div>
-    <div class="container mx-auto">
-      <form class="md:flex bg-gray-200 absolute bottom-0 left-0 w-screen p-3 justify-around">
-        <div class="md:flex md:items-center">
-          <div>
-            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-theme">
-              お題
-            </label>
-          </div>
-          <div>
-            <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="inline-theme" type="text" v-model="newTitle.theme">
-          </div>
+    <form class="container mx-auto md:flex bg-gray-200 absolute bottom-0 left-0 w-screen p-3 justify-around">
+      <div class="md:flex md:items-center">
+        <div>
+          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-theme">
+            お題
+          </label>
         </div>
-        <div class="md:flex md:items-center">
-          <div>
-            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-user-name">
-              お名前
-            </label>
-          </div>
-          <div>
-            <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="inline-user-name" type="text" v-model="newTitle.user_name">
-          </div>
+        <div>
+          <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-theme" type="text" v-model="newTitle.theme">
         </div>
-        <div class="md:flex md:items-center">
-          <div>
-            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-md" type="button" @click="handleCreateNewTitle">
-              投稿
-            </button>
-          </div>
+      </div>
+      <div class="md:flex md:items-center">
+        <div>
+          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-user-name">
+            お名前
+          </label>
         </div>
-      </form>
-    </div>
+        <div>
+          <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-user-name" type="text" v-model="newTitle.user_name">
+        </div>
+      </div>
+      <div class="md:flex md:items-center">
+        <div>
+          <button class="shadow bg-blue-default focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded-md" type="button" @click="handleCreateNewTitle">
+            投稿
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
