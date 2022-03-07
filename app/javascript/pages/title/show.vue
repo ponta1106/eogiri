@@ -1,12 +1,19 @@
 <template>
-  <div id="title-show" class="relative">
-    <div class="container h-5/6 p-3 m-3 mx-auto bg-blue-100 text-blue-900">
-      <h3 class="text-3xl text-center mb-2">{{ selectedTitle.theme }} :  <span><small>{{ selectedTitle.user_name }} の回答一覧</small></span></h3>
-      <ul class="overflow-auto h-5/6">
+  <div id="title-show">
+    <div class="container mx-auto h-5/6 w-5/6 p-3 m-3 bg-gray-200 filter drop-shadow-lg rounded-md self-center">
+      <h3 class="text-3xl text-center m-3">
+        <span>
+          <router-link
+            class="text-sm p-1 rounded-md bg-blue-lighter text-white"
+            :to="{ name: 'Titles' }">戻る</router-link>
+        </span>
+        お題 ： {{ selectedTitle.theme }}
+      </h3>
+      <ul class="overflow-auto bg-white h-5/6 p-3 rounded-md">
         <li
           v-for="(reply, index) in filteredReplies" :data-index="index"
           :key="reply"
-          class="hover:bg-blue-200 rounded-md my-2 p-2 flex justify-between"
+          class="hover:bg-blue-100 rounded-md my-2 p-2 flex justify-between"
         >
           <dir>
             {{ reply.id }} - {{ reply.reply_title }} - {{ reply.user_name }}
@@ -14,7 +21,7 @@
           <div>
             <button
               @click="handleUpdateReply(reply)"
-              class="rounded m-2 p-2 bg-blue-300 text-blue-900"
+              class="rounded m-2 p-2 bg-blue-default text-white"
             >{{ reply.favorite }} <small>いいね！</small></button>
             <button
               class="rounded m-2 p-2 bg-red-300 text-red-900"
@@ -27,37 +34,35 @@
         </li>
       </ul>
     </div>
-    <div class="container mx-auto">
-      <form class="md:flex bg-gray-200 absolute bottom-0 left-0 w-screen p-3 justify-around">
-        <div class="md:flex md:items-center md:mb-0 mb-6">
-          <div>
-            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-theme">
-              回答
-            </label>
-          </div>
-          <div>
-            <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="inline-theme" type="text" v-model="newReply.reply_title">
-          </div>
+    <form class="container mx-auto md:flex bg-gray-200 absolute bottom-0 left-0 w-screen p-3 justify-around">
+      <div class="md:flex md:items-center md:mb-0 mb-6">
+        <div>
+          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-theme">
+            回答
+          </label>
         </div>
-        <div class="md:flex md:items-center md:mb-0 mb-6">
-          <div>
-            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-user-name">
-              お名前
-            </label>
-          </div>
-          <div>
-            <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="inline-user-name" type="text" v-model="newReply.user_name">
-          </div>
+        <div>
+          <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-default" id="inline-theme" type="text" v-model="newReply.reply_title">
         </div>
-        <div class="md:flex md:items-center md:mb-0 mb-6">
-          <div>
-            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-red text-white font-bold py-2 px-4 rounded" type="button" @click="handleCreateNewReply">
-              回答
-            </button>
-          </div>
+      </div>
+      <div class="md:flex md:items-center md:mb-0 mb-6">
+        <div>
+          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-user-name">
+            お名前
+          </label>
         </div>
-      </form>
-    </div>
+        <div>
+          <input class="bg-gray-100 appearance-none border-2 border-gray-200 rounded-md py-2 px-4 mx-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-default" id="inline-user-name" type="text" v-model="newReply.user_name">
+        </div>
+      </div>
+      <div class="md:flex md:items-center md:mb-0 mb-6">
+        <div>
+          <button class="shadow bg-blue-default focus:shadow-outline focus:outline-red text-white font-bold py-2 px-6 rounded" type="button" @click="handleCreateNewReply">
+            回答
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 

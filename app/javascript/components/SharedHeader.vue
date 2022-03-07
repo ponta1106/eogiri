@@ -1,10 +1,10 @@
 <template>
   <header>
-    <ul class="flex bg-gray-200 py-1">
-      <li class="flex-1 text-gray-700 text-center bg-gray-100 px-4 py-2 m-2 rounded-md">
+    <ul class="flex bg-blue-default p-3">
+      <li class="flex-1 text-white self-center text-center bg-blue-default">
         <router-link to="/">絵大喜利</router-link>
       </li>
-      <li class="flex-1 text-gray-700 text-center bg-gray-100 px-4 py-2 m-2 rounded-md">
+      <li class="flex-1 text-white self-center text-center bg-blue-default">
         <router-link to="/titles">お題一覧</router-link>
       </li>
     </ul>

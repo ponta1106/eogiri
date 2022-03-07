@@ -9,15 +9,11 @@ module.exports = {
         'kosugimaru': ['"Kosugi Maru"', 'sans-serif'],
       },
       colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
-        gray: colors.gray,
-        red: colors.rose,
-        blue: colors.indigo,
-        yellow: colors.amber,
-        purple: colors.purple,
-        orange: colors.orange,
-        teal: colors.teal
+        orange: '#ffc195',
+        blue: {
+          lighter: '#95B5E7',
+          default: '#7689ad',
+        }
       }
     },
   },
