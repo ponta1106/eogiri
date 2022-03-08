@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="font-kosugimaru text-blue-default h-screen flex flex-col container mx-auto bg-orange">
-    <SharedHeader class="flex-grow-0"/>
-      <router-view class="flex-grow relative"/>
-    <SharedFooter class="flex-grow-0"/>
+  <div id="app" class="font-kosugimaru text-orange h-screen flex flex-col mx-auto bg-dark">
+    <SharedHeader class="flex-grow-0 container mx-auto"/>
+      <router-view class="flex-grow relative container mx-auto"/>
+    <SharedFooter class="flex-grow-0 container mx-auto"/>
   </div>
 </template>
 
