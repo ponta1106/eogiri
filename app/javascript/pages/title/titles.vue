@@ -1,15 +1,15 @@
 <template>
   <div id="title-index">
-    <div class="container mx-auto h-96 w-5/6 p-3 m-3 bg-dark">
+    <div class="container mx-auto h-5/6 w-5/6 p-3 m-3 bg-dark">
       <h3 class="text-3xl text-center m-3">お題一覧</h3>
-      <ul class="overflow-auto text-dark bg-orange
-       h-5/6 p-3">
+      <ul class="overflow-auto text-dark bg-orange-default
+       h-96 p-3">
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
-          class="hover:bg-gray-200 my-2 p-2 flex justify-between"
+          class="hover:bg-orange-lighter my-2 p-2 flex justify-between"
         >
-          <div>
+          <div class="self-center">
             <router-link
               :to="{
                 name: 'TitleShow',
@@ -19,7 +19,7 @@
             </router-link>
           </div>
           <button
-            class="m-2 p-2 bg-orange text-red-700"
+            class="m-2 p-2 bg-dark text-orange-default"
             @click="handleDeleteTitle(title)"
           >お題を削除</button>
         </li>
@@ -34,7 +34,7 @@
             </label>
           </div>
           <div>
-            <input class="focus:ring-2 focus:ring-orange bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-theme" type="text" v-model="newTitle.theme">
+            <input class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-theme" type="text" v-model="newTitle.theme">
           </div>
         </div>
         <div class="md:flex md:items-center">
@@ -44,13 +44,13 @@
             </label>
           </div>
           <div>
-            <input class="focus:ring-2 focus:ring-orange bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-user-name" type="text" v-model="newTitle.user_name">
+            <input class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-user-name" type="text" v-model="newTitle.user_name">
           </div>
         </div>
       </div>
       <div class="md:flex md:items-center">
         <div>
-          <button class="focus:ring-4 focus:ring-orange text-dark shadow bg-orange py-2 px-6 w-full md:w-auto" type="button" @click="handleCreateNewTitle">
+          <button class="focus:ring-4 focus:ring-orange-default text-dark shadow bg-orange-default py-2 px-6 w-full md:w-auto" type="button" @click="handleCreateNewTitle">
             投稿
           </button>
         </div>

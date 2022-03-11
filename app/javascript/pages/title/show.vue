@@ -1,35 +1,37 @@
 <template>
   <div id="title-show">
-    <div class="container mx-auto h-96 w-5/6 p-3 m-3 bg-dark">
+    <div class="container mx-auto h-5/6 w-5/6 p-3 m-3 bg-dark">
       <h3 class="text-3xl text-center m-3">
         <span>
           <router-link
-            class="text-sm py-1 px-2 bg-orange text-dark"
+            class="text-sm py-1 px-2 bg-orange-default text-dark"
             :to="{ name: 'Titles' }">戻る</router-link>
         </span>
         お題 ： {{ selectedTitle.theme }}
       </h3>
-      <ul class="overflow-auto text-dark bg-orange
-       h-5/6 p-3">
+      <ul class="overflow-auto text-dark bg-orange-default
+       h-96 p-3">
         <li
           v-for="(reply, index) in filteredReplies" :data-index="index"
           :key="reply"
-          class="hover:bg-gray-200 my-2 p-2 flex justify-between"
+          class="hover:bg-orange-lighter my-2 p-2 flex justify-between h-24"
         >
-          <div>
+          <div class="self-center">
             {{ reply.id }} - {{ reply.reply_title }} - {{ reply.user_name }}
+          </div>
+          <div class="self-center">
             <img
               :src="reply.image_url"
-              class="h-52"
+              class="h-20"
             >
           </div>
-          <div>
+          <div class="self-center">
             <button
               @click="handleUpdateReply(reply)"
-              class="m-2 p-2 bg-dark text-orange"
+              class="m-2 p-2 bg-dark text-orange-default"
             >{{ reply.favorite }} <small>いいね！</small></button>
             <button
-              class="m-2 p-2 bg-dark text-orange"
+              class="m-2 p-2 bg-dark text-orange-default"
               @click="handleDeleteReply(reply)"
             >削除</button>
           </div>
@@ -49,7 +51,7 @@
           </div>
           <div>
             <input
-              class="focus:ring-2 focus:ring-orange bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue"
+              class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue"
               id="inline-theme"
               type="text"
               name="reply_title"
@@ -64,7 +66,7 @@
             </label>
           </div>
           <div>
-            <input class="focus:ring-2 focus:ring-orange bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue"
+            <input class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue"
             id="inline-user-name"
             type="text"
             name="user_name"
@@ -74,7 +76,7 @@
       </div>
       <div class="sm:flex mb-0 flex-1 justify-around">
         <div class="sm:flex mb-2 sm:mb-0">
-          <div class="relative text-dark bg-orange flex justify-center items-center hover:cursor-pointer w-5/6">
+          <div class="relative text-dark bg-orange-default flex justify-center items-center hover:cursor-pointer w-5/6">
             <div class="absolute">
               <div class="flex flex-col items-center ">
                 <span class="block font-normal">ファイルを選択</span>
@@ -91,7 +93,7 @@
         </div>
         <div class="md:flex md:items-center">
           <button
-            class="text-dark shadow bg-orange py-2 px-6 w-full" type="button"
+            class="text-dark shadow bg-orange-default py-2 px-6 w-full" type="button"
             @click="handleCreateNewReply">
             回答
           </button>

@@ -9,11 +9,14 @@ module.exports = {
         'kosugimaru': ['"Kosugi Maru"', 'sans-serif'],
       },
       colors: {
-        orange: 'rgb(232, 170, 140)',
         dark: 'rgb(94, 97, 106)',
+        orange: {
+          lighter :'rgb(252, 190, 160)',
+          default :'rgb(232, 170, 140)',
+        },
         blue: {
-          lighter: '#95B5E7',
-          default: '#7689ad',
+          lighter : '#95B5E7',
+          default : '#7689ad',
         }
       },
       backgroundImage: {
