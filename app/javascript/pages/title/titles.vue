@@ -1,6 +1,6 @@
 <template>
   <div id="title-index">
-    <div class="container mx-auto h-5/6 w-5/6 p-3 m-3 bg-dark">
+    <div class="container mx-auto h-96 w-5/6 p-3 m-3 bg-dark">
       <h3 class="text-3xl text-center m-3">お題一覧</h3>
       <ul class="overflow-auto text-dark bg-orange
        h-5/6 p-3">
@@ -9,7 +9,7 @@
           :key="title"
           class="hover:bg-gray-200 my-2 p-2 flex justify-between"
         >
-          <dir>
+          <div>
             <router-link
               :to="{
                 name: 'TitleShow',
@@ -17,7 +17,7 @@
               }"
             >{{ title.id }} . {{ title.theme }} - {{ title.user_name }}
             </router-link>
-          </dir>
+          </div>
           <button
             class="m-2 p-2 bg-orange text-red-700"
             @click="handleDeleteTitle(title)"
