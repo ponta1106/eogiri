@@ -2,13 +2,13 @@ class Api::RepliesController < ApplicationController
 
   def index
     @replies = Reply.all.order(created_at: :desc)
-    render json: @replies
+    render json: @replies, methods: [:image_url]
   end
 
   def create
     @reply = Reply.new(reply_params)
     if @reply.save
-      render json: @reply
+      render json: @reply, methods: [:image_url]
     else
       render json: @reply.errors, status: :bad_request
     end
@@ -17,7 +17,7 @@ class Api::RepliesController < ApplicationController
   def update
     @reply = Reply.find(params[:id])
     if @reply.update(reply_params)
-      render json: @reply
+      render json: @reply, methods: [:image_url]
     else
       render json: @reply.errors, status: :bad_request
     end
@@ -32,7 +32,7 @@ class Api::RepliesController < ApplicationController
   private
 
   def reply_params
-    params.require(:reply).permit(:id, :created_at, :user_name, :reply_title, :favorite, :updated_at, :title_id)
+    params.permit(:user_name, :title_id, :reply_title, :favorite, :image)
   end
 
 end
