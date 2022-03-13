@@ -20,7 +20,7 @@
           <div class="self-center">
             {{ reply.id }} - {{ reply.reply_title }} - {{ reply.user_name }}
           </div>
-          <div class="self-center">
+          <div class="self-center bg-white rounded-md">
             <img
               :src="reply.image_url"
               class="h-20"

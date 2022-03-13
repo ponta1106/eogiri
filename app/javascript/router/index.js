@@ -5,12 +5,18 @@ import PrivacyPolicy from '../pages/privacy_policy';
 import TermsOfUse from '../pages/terms_of_use';
 import Titles from '../pages/title/titles';
 import TitleShow from '../pages/title/show';
+import DrawingSpace from '../components/DrawingSpace';
 
 const routes = [
   {
     path: '/',
     name: 'Top',
     component: Top,
+  },
+  {
+    path: '/drawing_space',
+    name: 'DrawingSpace',
+    component: DrawingSpace,
   },
   {
     path: '/terms_of_use',
