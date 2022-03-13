@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="font-kosugimaru text-orange-default h-screen flex flex-col mx-auto bg-dark">
+  <div id="app" class="font-ReggaeOne text-orange-default h-screen flex flex-col mx-auto bg-dark">
     <SharedHeader class="flex-grow-0 container mx-auto"/>
       <router-view class="flex-grow relative container mx-auto"/>
     <SharedFooter class="flex-grow-0 container mx-auto"/>

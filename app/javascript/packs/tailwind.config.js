@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
   purge: ["./src/**/*.html", "src/**/*.vue"],
   darkMode: 'media',
@@ -7,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'kosugimaru': ['"Kosugi Maru"', 'sans-serif'],
+        'ReggaeOne': ['"Reggae One"', 'sans-serif']
       },
       colors: {
         dark: 'rgb(94, 97, 106)',
