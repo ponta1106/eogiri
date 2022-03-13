@@ -1,6 +1,6 @@
 <template>
   <div id="title-index">
-    <div class="container mx-auto h-5/6 w-5/6 p-3 m-3 bg-dark">
+    <div class="container mx-auto h-5/6 w-11/12 p-3 m-3 bg-dark">
       <h3 class="text-3xl text-center m-3">お題一覧</h3>
       <ul class="overflow-auto text-dark bg-orange-default
        h-96 p-3">
@@ -25,34 +25,43 @@
         </li>
       </ul>
     </div>
-    <form class="container mx-auto md:flex absolute bottom-0 left-0 w-screen p-3 justify-around">
-      <div class="flex mb-3 md:mb-0">
-        <div class="md:flex md:items-center">
+    <form class="container mx-auto xl:flex absolute bottom-0 left-0 w-screen">
+      <div class="sm:flex mb-3 xl:mb-0 flex-1 justify-around">
+        <div class="sm:flex sm:items-center">
           <div>
-            <label class="block font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-theme">
+            <label class="block font-bold sm:text-right mb-1 sm:mb-0 pr-4" for="inline-theme">
               お題
             </label>
           </div>
           <div>
-            <input class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-theme" type="text" v-model="newTitle.theme">
+            <input
+              class="focus:ring-2 focus:ring-orange-default appearance-none py-2 px-4 mx-4 text-dark leading-tight focus:outline-none"
+              id="inline-theme"
+              type="text"
+              v-model="newTitle.theme">
           </div>
         </div>
-        <div class="md:flex md:items-center">
+        <div class="sm:flex sm:items-center">
           <div>
-            <label class="block font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-user-name">
+            <label class="block font-bold sm:text-right mb-1 sm:mb-0 pr-4" for="inline-user-name">
               お名前
             </label>
           </div>
           <div>
-            <input class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue" id="inline-user-name" type="text" v-model="newTitle.user_name">
+            <input
+              class="focus:ring-2 focus:ring-orange-default appearance-none py-2 px-4 mx-4 text-dark leading-tight focus:outline-none" id="inline-user-name"
+              type="text"
+              v-model="newTitle.user_name">
           </div>
         </div>
-      </div>
-      <div class="md:flex md:items-center">
-        <div>
-          <button class="focus:ring-4 focus:ring-orange-default text-dark shadow bg-orange-default py-2 px-6 w-full md:w-auto" type="button" @click="handleCreateNewTitle">
-            投稿
-          </button>
+        <div class="sm:flex sm:items-center">
+          <div>
+            <button
+              class="text-dark shadow bg-orange-default py-2 px-6 w-full"
+              type="button" @click="handleCreateNewTitle">
+              投稿
+            </button>
+          </div>
         </div>
       </div>
     </form>

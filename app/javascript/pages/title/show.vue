@@ -1,13 +1,14 @@
 <template>
   <div id="title-show">
-    <div class="container mx-auto h-5/6 w-5/6 p-3 m-3 bg-dark">
+    <div class="container mx-auto h-5/6 w-11/12 p-3 m-3 bg-dark">
       <h3 class="text-3xl text-center m-3">
+        <span class="text-md py-2 px-4 bg-orange-default text-dark">お題</span>
+        {{ selectedTitle.theme }}
         <span>
           <router-link
             class="text-sm py-1 px-2 bg-orange-default text-dark"
             :to="{ name: 'Titles' }">戻る</router-link>
         </span>
-        お題 ： {{ selectedTitle.theme }}
       </h3>
       <ul class="overflow-auto text-dark bg-orange-default
        h-96 p-3">
@@ -45,13 +46,15 @@
       <div class="sm:flex mb-3 xl:mb-0 flex-1 justify-around">
         <div class="sm:flex sm:items-center">
           <div>
-            <label class="block font-bold sm:text-right mb-1 sm:mb-0 pr-4" for="inline-theme">
+            <label
+              class="block font-bold sm:text-right mb-1 sm:mb-0 pr-4"
+              for="inline-theme">
               回答
             </label>
           </div>
           <div>
             <input
-              class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue"
+              class="focus:ring-2 focus:ring-orange-default appearance-none py-2 px-4 mx-4 text-dark leading-tight focus:outline-none"
               id="inline-theme"
               type="text"
               name="reply_title"
@@ -66,11 +69,12 @@
             </label>
           </div>
           <div>
-            <input class="focus:ring-2 focus:ring-orange-default bg-gray-100 appearance-none border-2 border-gray-200 py-2 px-4 mx-4 text-dark leading-tight focus:outline-none focus:bg-white focus:border-blue"
-            id="inline-user-name"
-            type="text"
-            name="user_name"
-            v-model="newReply.user_name">
+            <input
+              class="focus:ring-2 focus:ring-orange-default appearance-none py-2 px-4 mx-4 text-dark leading-tight focus:outline-none"
+              id="inline-user-name"
+              type="text"
+              name="user_name"
+              v-model="newReply.user_name">
           </div>
         </div>
       </div>
@@ -91,7 +95,7 @@
             >
           </div>
         </div>
-        <div class="md:flex md:items-center">
+        <div class="sm:flex sm:items-center">
           <button
             class="text-dark shadow bg-orange-default py-2 px-6 w-full" type="button"
             @click="handleCreateNewReply">
