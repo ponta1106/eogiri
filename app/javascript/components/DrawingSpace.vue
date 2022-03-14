@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <h1>お絵かきスペース</h1>
+  <div id="drawing-space">
+    <h1
+      class="bg-orange-default text-dark p-2"
+    >お絵かきスペース</h1>
     <div class="absolute">
       <canvas
         id="myCanvas"
         :class="{ eraser: canvasMode === 'eraser' }"
-        class="bg-white border-6 border-orange"
+        class="bg-white"
         @mousedown="dragStart"
         @mouseup="dragEnd"
         @mouseout="dragEnd"
         @mousemove="draw"
       >このブラウザは HTML5 Canvas に対応していません。</canvas>
-      <div>
+      <div class="bg-orange-default text-dark p-2">
         <div class="flex justify-between">
           <button id="pen-black-button" @click="penBlack">ペン(黒)</button>
           <button id="pen-red-button" @click="penRed">ペン(赤)</button>
@@ -38,8 +40,9 @@ export default {
   },
   mounted() {
     this.canvas = document.querySelector('#myCanvas')
-    this.canvas.width = 1280;
-    this.canvas.height = 500;
+    this.drawingSpace = document.getElementById('drawing-space')
+    this.canvas.width = this.drawingSpace.clientWidth
+    this.canvas.height = this.drawingSpace.clientHeight - 104
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
@@ -73,8 +76,8 @@ export default {
     },
     eraser() {
       this.canvasMode = 'eraser';
-      this.context.lineCap = 'square';
-      this.context.lineJoin = 'square';
+      this.context.lineCap = 'round';
+      this.context.lineJoin = 'round';
       this.context.lineWidth = 10;
       this.context.strokeStyle = '#fff';
     },

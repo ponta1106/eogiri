@@ -83,7 +83,7 @@
           <div class="relative text-dark bg-orange-default flex justify-center items-center hover:cursor-pointer w-5/6">
             <div class="absolute">
               <div class="flex flex-col items-center ">
-                <span class="block font-normal">ファイルを選択</span>
+                <span class="block font-normal">絵を選択</span>
               </div>
             </div>
             <input
