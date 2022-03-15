@@ -9,6 +9,7 @@ module.exports = {
       },
       colors: {
         dark: 'rgb(94, 97, 106)',
+        modalbg: 'rgba(94, 97, 106, .5)',
         orange: {
           lighter :'rgb(252, 190, 160)',
           default :'rgb(232, 170, 140)',

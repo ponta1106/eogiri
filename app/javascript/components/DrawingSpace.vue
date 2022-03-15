@@ -1,9 +1,19 @@
 <template>
-  <div id="drawing-space">
-    <h1
-      class="bg-orange-default text-dark p-2"
-    >お絵かきスペース</h1>
-    <div class="absolute">
+  <div
+    class="fixed top-0 left-0 z-10 w-full h-full bg-modalbg flex items-center justify-around"
+    >
+    <div
+      id="drawing-space"
+      class="w-5/6 h-5/6 absolute">
+      <h1
+        id="draw-space-title"
+        class="bg-orange-default text-dark p-2"
+      >お絵かきスペース
+      <span
+        class="bg-dark text-orange-default px-2 cursor-pointer"
+        @click="closeModal"
+      >閉じる</span>
+      </h1>
       <canvas
         id="myCanvas"
         :class="{ eraser: canvasMode === 'eraser' }"
@@ -21,6 +31,10 @@
           <button id="eraser-button" @click="eraser">消しゴム</button>
           <button id="clear-button" @click="clear">クリア</button>
         </div>
+        <span>ペンの太さ : {{ penWidth }}</span>
+        <input type="range" list="tickmarks" min="1" max="100" step="1" v-model.number="penWidth" @change="changePenWidth">
+        <span>消しゴムの太さ : {{ eraserWidth }}</span>
+        <input type="range" list="tickmarks" min="1" max="100" step="1" v-model.number="eraserWidth" @change="changeEraserWidth">
         <button id="download-button" @click="download">ダウンロード</button>
       </div>
     </div>
@@ -35,62 +49,75 @@ export default {
       canvasMode: 'penBlack',
       canvas: null,
       context: null,
+      penWidth: 1,
+      eraserWidth: 1,
       isDrag: false,
+      isVisible: false,
     };
   },
   mounted() {
     this.canvas = document.querySelector('#myCanvas')
     this.drawingSpace = document.getElementById('drawing-space')
+    this.drawSpaceTitle = document.getElementById('draw-space-title')
     this.canvas.width = this.drawingSpace.clientWidth
-    this.canvas.height = this.drawingSpace.clientHeight - 104
+    this.canvas.height = this.drawingSpace.clientHeight - 176
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
-    this.context.lineWidth = 10;
-    this.context.strokeStyle = 'rgba(100, 100, 100, .3)';
+    this.context.lineWidth = this.penWidth;
+    this.context.strokeStyle = 'rgba(100, 100, 100, .1)';
   },
   methods: {
+    closeModal() {
+      this.$emit("closeDrawingSpace");
+    },
+    changePenWidth() {
+      this.context.lineWidth = this.penWidth;
+    },
+    changeEraserWidth() {
+      this.context.lineWidth = this.eraserWidth;
+    },
     // ペンモード(黒)
     penBlack() {
       this.canvasMode = 'penBlack';
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
-      this.context.lineWidth = 10;
-      this.context.strokeStyle = 'rgba(10, 10, 10, .1)';
+      this.context.lineWidth = this.penWidth;
+      this.context.strokeStyle = 'rgba(100, 100, 100, .1)';
     },
     // ペンモード(赤)
     penRed() {
       this.canvasMode = 'penRed';
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
-      this.context.lineWidth = 10;
-      this.context.strokeStyle = 'rgba(200, 0, 0, .1)';
+      this.context.lineWidth = this.penWidth;
+      this.context.strokeStyle = 'rgba(200, 100, 100, .1)';
     },
     // ペンモード(青)
     penBlue() {
       this.canvasMode = 'penBlue';
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
-      this.context.lineWidth = 10;
-      this.context.strokeStyle = 'rgba(0, 0, 100, .1)';
+      this.context.lineWidth = this.penWidth;
+      this.context.strokeStyle = 'rgba(100, 100, 200, .1)';
     },
     eraser() {
       this.canvasMode = 'eraser';
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
-      this.context.lineWidth = 10;
-      this.context.strokeStyle = '#fff';
+      this.context.lineWidth = this.eraserWidth;
+      this.context.strokeStyle = 'rgba(255, 255, 255, 1)';
     },
     download() {
       let link = document.createElement("a");
       link.href = this.canvas.toDataURL("image/png");
-      link.download = 'canvas-' + new Date().getTime() + '.png';
+      link.download = 'Eogiri-' + new Date().getTime() + '.png';
       link.click();
     },
     // 描画
     draw(e) {
       var x = e.layerX
-      var y = e.layerY
+      var y = e.layerY - this.drawSpaceTitle.clientHeight
       if(!this.isDrag) {
         return;
       }
@@ -100,7 +127,7 @@ export default {
     // 描画開始(mousedown)
     dragStart(e) {
       var x = e.layerX
-      var y = e.layerY
+      var y = e.layerY - this.drawSpaceTitle.clientHeight
       this.context.beginPath();
       this.context.lineTo(x, y);
       this.context.stroke();
