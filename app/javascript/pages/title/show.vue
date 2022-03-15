@@ -9,6 +9,10 @@
             class="text-sm py-1 px-2 bg-orange-default text-dark"
             :to="{ name: 'Titles' }">戻る</router-link>
         </span>
+        <DrawingSpace
+          v-if="isVisibleDrawingSpace"
+          @close-drawing-space="closeModal"
+        />
       </h3>
       <ul class="overflow-auto text-dark bg-orange-default
        h-96 p-3">
@@ -102,15 +106,26 @@
             回答
           </button>
         </div>
+        <div class="sm:flex sm:items-center">
+          <button
+            class="text-dark shadow bg-orange-default py-2 px-6 w-full"
+            type="button"
+            @click="showDrawingSpace"
+          >
+            絵を描く
+          </button>
+        </div>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import DrawingSpace from '../../components/DrawingSpace.vue'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'TitleShow',
+  components: { DrawingSpace },
   data() {
     return {
       newReply: {
@@ -119,7 +134,8 @@ export default {
         user_name: null,
         favorite: 0,
       },
-      uploadImage: null
+      uploadImage: null,
+      isVisibleDrawingSpace: false,
     }
   },
   computed: {
@@ -146,6 +162,12 @@ export default {
       'updateReply',
       'deleteReply',
     ]),
+    showDrawingSpace() {
+      this.isVisibleDrawingSpace = true;
+    },
+    closeModal() {
+      this.isVisibleDrawingSpace = false;
+    },
     async handleChange(event) {
       this.uploadImage = event.target.files[0]
     },
