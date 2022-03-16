@@ -2,12 +2,11 @@
   <div id="title-index">
     <div class="container mx-auto h-5/6 w-11/12 p-3 m-3 bg-dark">
       <h3 class="text-3xl text-center m-3">お題一覧</h3>
-      <ul class="overflow-auto text-dark bg-orange-default
-       h-96 p-3">
+      <ul class="overflow-auto text-dark h-96 p-3">
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
-          class="hover:bg-orange-lighter my-2 p-2 flex justify-between"
+          class="bg-orange-default my-2 p-2 flex justify-between"
         >
           <div class="self-center">
             <router-link
