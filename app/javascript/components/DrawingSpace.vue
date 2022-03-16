@@ -7,7 +7,7 @@
       class="w-5/6 h-5/6 absolute">
       <h1
         id="draw-space-title"
-        class="bg-orange-default text-dark p-2"
+        class="bg-orange-default text-dark p-2 flex justify-between"
       >お絵かきスペース
       <span
         class="bg-dark text-orange-default px-2 cursor-pointer"

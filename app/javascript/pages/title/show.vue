@@ -9,36 +9,33 @@
             class="text-sm py-1 px-2 bg-orange-default text-dark"
             :to="{ name: 'Titles' }">戻る</router-link>
         </span>
-        <DrawingSpace
-          v-if="isVisibleDrawingSpace"
-          @close-drawing-space="closeModal"
-        />
       </h3>
-      <ul class="overflow-auto text-dark bg-orange-default
-       h-96 p-3">
+      <ul
+        class="flex flex-col text-dark overflow-auto h-96 p-3"
+      >
         <li
           v-for="(reply, index) in filteredReplies" :data-index="index"
           :key="reply"
-          class="hover:bg-orange-lighter my-2 p-2 flex justify-between h-24"
+          class="bg-orange-default my-2 p-2 flex flex-col justify-between"
         >
-          <div class="self-center">
-            {{ reply.id }} - {{ reply.reply_title }} - {{ reply.user_name }}
-          </div>
           <div class="self-center bg-white rounded-md">
             <img
               :src="reply.image_url"
-              class="h-20"
+              class="h-24"
             >
+          </div>
+          <div class="self-center">
+            {{ reply.id }} - {{ reply.reply_title }} - {{ reply.user_name }}
           </div>
           <div class="self-center">
             <button
               @click="handleUpdateReply(reply)"
               class="m-2 p-2 bg-dark text-orange-default"
             >{{ reply.favorite }} <small>いいね！</small></button>
-            <button
+            <!-- <button
               class="m-2 p-2 bg-dark text-orange-default"
               @click="handleDeleteReply(reply)"
-            >削除</button>
+            >削除</button> -->
           </div>
         </li>
         <li v-show="filteredReplies.length == 0">
@@ -117,6 +114,10 @@
         </div>
       </div>
     </form>
+    <DrawingSpace
+      v-if="isVisibleDrawingSpace"
+      @close-drawing-space="closeModal"
+    />
   </div>
 </template>
 
@@ -154,6 +155,12 @@ export default {
       return this.replies.filter(reply => {
         return reply.title_id == this.selectedTitle.id;
       })
+    },
+    //いいねの数が多い順に表示
+    ranking() {
+      return this.filteredReplies.sort(function (a, b) {
+        return b.favorite - a.favorite;
+      });
     }
   },
   methods: {
