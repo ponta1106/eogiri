@@ -17,10 +17,10 @@
             >{{ title.id }} . {{ title.theme }} - {{ title.user_name }}
             </router-link>
           </div>
-          <button
+          <!-- <button
             class="m-2 p-2 bg-dark text-orange-default"
             @click="handleDeleteTitle(title)"
-          >お題を削除</button>
+          >お題を削除</button> -->
         </li>
       </ul>
     </div>
