@@ -6,9 +6,10 @@
       id="drawing-space"
       class="w-5/6 h-5/6 absolute">
       <h1
-        id="draw-space-title"
+        id="drawing-space-title"
         class="bg-orange-default text-dark p-2 flex justify-between"
-      >お絵かきスペース
+      >
+      {{ currentTheme }}
       <span
         class="bg-dark text-orange-default px-2 cursor-pointer"
         @click="closeModal"
@@ -23,7 +24,10 @@
         @mouseout="dragEnd"
         @mousemove="draw"
       >このブラウザは HTML5 Canvas に対応していません。</canvas>
-      <div class="bg-orange-default text-dark p-2">
+      <div
+        id="drawing-space-menus"
+        class="bg-orange-default text-dark p-2"
+      >
         <div class="flex justify-between">
           <button id="pen-black-button" @click="penBlack">ペン(黒)</button>
           <button id="pen-red-button" @click="penRed">ペン(赤)</button>
@@ -44,6 +48,11 @@
 <script>
 export default {
   name: 'DrawingSpace',
+  props: {
+    currentTheme: {
+      type: String,
+    },
+  },
   data() {
     return {
       canvasMode: 'penBlack',
@@ -58,9 +67,10 @@ export default {
   mounted() {
     this.canvas = document.querySelector('#myCanvas')
     this.drawingSpace = document.getElementById('drawing-space')
-    this.drawSpaceTitle = document.getElementById('draw-space-title')
+    this.drawingSpaceTitle = document.getElementById('drawing-space-title')
+    this.drawingSpaceMenu = document.getElementById('drawing-space-menus')
     this.canvas.width = this.drawingSpace.clientWidth
-    this.canvas.height = this.drawingSpace.clientHeight - 176
+    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - this.drawingSpaceMenu.clientHeight
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
@@ -117,7 +127,7 @@ export default {
     // 描画
     draw(e) {
       var x = e.layerX
-      var y = e.layerY - this.drawSpaceTitle.clientHeight
+      var y = e.layerY - this.drawingSpaceTitle.clientHeight
       if(!this.isDrag) {
         return;
       }
@@ -127,7 +137,7 @@ export default {
     // 描画開始(mousedown)
     dragStart(e) {
       var x = e.layerX
-      var y = e.layerY - this.drawSpaceTitle.clientHeight
+      var y = e.layerY - this.drawingSpaceTitle.clientHeight
       this.context.beginPath();
       this.context.lineTo(x, y);
       this.context.stroke();
