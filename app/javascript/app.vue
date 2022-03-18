@@ -1,19 +1,16 @@
 <template>
-  <div id="app" class="font-ReggaeOne text-orange-default h-screen flex flex-col mx-auto bg-dark">
-    <SharedHeader class="flex-grow-0 container mx-auto"/>
-      <router-view class="flex-grow relative container mx-auto"/>
-    <SharedFooter class="flex-grow-0 container mx-auto"/>
+  <div id="app" class="font-ReggaeOne text-orange-default h-screen w-screen bg-dark-lighter flex">
+    <Sidebar v-if="this.$route.name != 'Top'" class="container min-w-52 w-52 flex-none bg-dark-default"/>
+    <router-view class="relative w-full"/>
   </div>
 </template>
 
 <script>
-import SharedHeader from './components/SharedHeader.vue'
-import SharedFooter from './components/SharedFooter.vue'
+import Sidebar from './components/Sidebar.vue'
 export default {
   name: 'App',
   components: {
-    SharedHeader,
-    SharedFooter
+    Sidebar
   }
 }
 </script>
