@@ -1,8 +1,8 @@
 <template>
-  <div id="title-index">
-    <div class="container mx-auto h-5/6 w-11/12 p-3 m-3 bg-dark">
+  <div id="title-index" class="h-screen">
+    <div class="container mx-auto w-11/12 p-3 h-full flex flex-col justify-around">
       <h3 class="text-3xl text-center m-3">お題一覧</h3>
-      <ul class="overflow-auto text-dark h-96 p-3">
+      <ul class="overflow-auto text-dark-default p-3">
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
@@ -17,53 +17,13 @@
             >{{ title.id }} . {{ title.theme }} - {{ title.user_name }}
             </router-link>
           </div>
-          <!-- <button
-            class="m-2 p-2 bg-dark text-orange-default"
+          <button
+            class="m-2 p-2 bg-dark-default text-orange-default"
             @click="handleDeleteTitle(title)"
-          >お題を削除</button> -->
+          >お題を削除</button>
         </li>
       </ul>
     </div>
-    <form class="container mx-auto xl:flex absolute bottom-0 left-0 w-screen">
-      <div class="sm:flex mb-3 xl:mb-0 flex-1 justify-around">
-        <div class="sm:flex sm:items-center">
-          <div>
-            <label class="block font-bold sm:text-right mb-1 sm:mb-0 pr-4" for="inline-theme">
-              お題
-            </label>
-          </div>
-          <div>
-            <input
-              class="focus:ring-2 focus:ring-orange-default appearance-none py-2 px-4 mx-4 text-dark leading-tight focus:outline-none"
-              id="inline-theme"
-              type="text"
-              v-model="newTitle.theme">
-          </div>
-        </div>
-        <div class="sm:flex sm:items-center">
-          <div>
-            <label class="block font-bold sm:text-right mb-1 sm:mb-0 pr-4" for="inline-user-name">
-              お名前
-            </label>
-          </div>
-          <div>
-            <input
-              class="focus:ring-2 focus:ring-orange-default appearance-none py-2 px-4 mx-4 text-dark leading-tight focus:outline-none" id="inline-user-name"
-              type="text"
-              v-model="newTitle.user_name">
-          </div>
-        </div>
-        <div class="sm:flex sm:items-center">
-          <div>
-            <button
-              class="text-dark shadow bg-orange-default py-2 px-6 w-full"
-              type="button" @click="handleCreateNewTitle">
-              投稿
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
   </div>
 </template>
 
@@ -93,24 +53,6 @@ export default {
       'createNewTitle',
       'deleteTitle',
     ]),
-    doAdd() {
-      //お題の追加ならフラグを立てる
-      this.addEnter = true
-    },
-    // トランジション開始でインデックス*100ms分のディレイを付与
-    beforeEnter(el) {
-      this.$nextTick(() => {
-        if (!this.addEnter) {
-          el.style.transitionDelay = 200 * parseInt(el.dataset.index, 10) + 'ms'
-        } else {
-          this.addEnter = false
-        }
-      })
-    },
-    // トランジション完了またはキャンセルでディレイを削除
-    afterEnter(el) {
-      el.style.transitionDelay = ''
-    },
     async handleCreateNewTitle() {
       // 空欄だったら、投稿せずに、アラートを表示します
       if(this.newTitle.user_name == '' || this.newTitle.theme == ''){

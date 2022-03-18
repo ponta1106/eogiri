@@ -1,17 +1,17 @@
 <template>
   <div
-    class="fixed top-0 left-0 z-10 w-full h-full bg-modalbg flex items-center justify-around"
+    class="fixed top-0 left-0 w-full h-full bg-modalbg flex items-center justify-around z-10"
     >
     <div
       id="drawing-space"
       class="w-5/6 h-5/6 absolute">
       <h1
         id="drawing-space-title"
-        class="bg-orange-default text-dark p-2 flex justify-between"
+        class="bg-orange-default text-dark-default p-2 flex justify-between"
       >
       {{ currentTheme }}
       <span
-        class="bg-dark text-orange-default px-2 cursor-pointer"
+        class="bg-dark-default text-orange-default px-2 cursor-pointer"
         @click="closeModal"
       >閉じる</span>
       </h1>
@@ -26,7 +26,7 @@
       >このブラウザは HTML5 Canvas に対応していません。</canvas>
       <div
         id="drawing-space-menus"
-        class="bg-orange-default text-dark p-2"
+        class="bg-orange-default text-dark-default p-2"
       >
         <div class="flex justify-between">
           <button id="pen-black-button" @click="penBlack">ペン(黒)</button>
