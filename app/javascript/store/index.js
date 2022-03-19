@@ -26,7 +26,7 @@ export const store = createStore({
   },
   mutations: {
     resetContent: (state) => {
-      state.content = 'フラッシュメッセージをここに表示します'
+      state.content = ''
     },
     setContent: (state,{ content, timeout }) => {
       state.content = content
