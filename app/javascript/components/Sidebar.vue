@@ -171,6 +171,9 @@ export default {
           await this.createNewTitle(this.newTitle)
           this.newTitle.theme = ''
           this.newTitle.user_name = ''
+          this.$store.commit('setContent' ,{
+            content: 'お題を投稿しました！'
+          })
         } catch(error) {
           console.log(error)
         }
@@ -196,6 +199,9 @@ export default {
           await this.createNewReply(formData)
           this.newReply.reply_title = ''
           this.newReply.user_name = ''
+          this.$store.commit('setContent' ,{
+            content: '回答を投稿しました！'
+          })
         } catch(error) {
           console.log(error)
         }

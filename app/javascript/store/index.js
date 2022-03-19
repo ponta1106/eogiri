@@ -14,14 +14,26 @@ export const store = createStore({
   state () {
     return {
       titles: [],
-      replies: []
+      replies: [],
+      // フラッシュメッセージ
+      content: ''
     }
   },
   getters: {
     titles: state => state.titles,
-    replies: state => state.replies
+    replies: state => state.replies,
+    content: state => state.content
   },
   mutations: {
+    resetContent: (state) => {
+      state.content = 'フラッシュメッセージをここに表示します'
+    },
+    setContent: (state,{ content, timeout }) => {
+      state.content = content
+      timeout = 3000
+
+      setTimeout(() => (state.content = ''), timeout);
+    },
     setTitles: (state, titles) => {
       state.titles = titles
     },
@@ -61,6 +73,10 @@ export const store = createStore({
     },
   },
   actions: {
+    //フラッシュメッセージの内容を初期化
+    fetchContent({ commit }) {
+      commit('resetContent')
+    },
     //お題一覧を取得
     fetchTitles({ commit }) {
       return axios.get('api/titles')
