@@ -8,93 +8,106 @@
         >
       </router-link>
       <!-- お題一覧ページにいるときのみ表示します -->
-      <form
-        v-if="this.$route.name == 'Titles'"
-        class="container mx-auto flex flex-col justify-between p-3"
-      >
-        <p
-          class="mb-2 p-2"
-        >お題投稿フォーム</p>
-        <label
-          class="w-full p-2"
-          for="inline-theme"
-        >
-          お題
-        </label>
-        <input
-          type="text"
-          id="inline-theme"
-          class="text-dark-default w-full mb-2 p-2"
-          v-model="newTitle.theme">
-        <label
-          class="w-full p-2"
-          for="inline-user-name"
-        >
-          お名前
-        </label>
-        <input
-          type="text"
-          id="inline-user-name"
-          class="text-dark-default w-full mb-2 p-2"
-          v-model="newTitle.user_name">
-        <button
-          type="button"
-          class="bg-orange-default text-dark-default p-2"
-          @click="handleCreateNewTitle">
-          お題を投稿する
-        </button>
-      </form>
-      <!-- お題詳細ページにいるときのみ表示します -->
-      <form
+      <div
         v-if="this.$route.name == 'TitleShow'"
         class="container mx-auto flex flex-col p-3"
       >
-        <p
-          class="mb-2 p-2"
-        >回答投稿フォーム</p>
-        <label
-          class="w-full"
-          for="inline-theme">
-          回答
-        </label>
-        <input
-          id="inline-theme"
-          type="text"
-          name="reply_title"
-          class="text-dark-default w-full mb-1 p-2"
-          v-model="newReply.reply_title">
-        <label
-          class="w-full"
-          for="inline-user-name"
+        <form
+          v-if="this.$route.name == 'Titles'"
+          class="container mx-auto flex flex-col justify-between p-3"
         >
-          お名前
-        </label>
-        <input
-          id="inline-user-name"
-          type="text"
-          name="user_name"
-          class="text-dark-default w-full mb-1 p-2"
-          v-model="newReply.user_name"
-        >
-        <label
-          for="image"
-        >
-          絵をえらぶ
-        </label>
-        <input
-          id="image"
-          type="file"
-          name="image"
-          class="w-full mb-1 p-2"
-          @change="handleChange"
-        >
+          <p
+            class="mb-2 p-2"
+          >お題投稿フォーム</p>
+          <label
+            class="w-full p-2"
+            for="inline-theme"
+          >
+            お題
+          </label>
+          <input
+            type="text"
+            id="inline-theme"
+            class="text-dark-default w-full mb-2 p-2"
+            v-model="newTitle.theme">
+          <label
+            class="w-full p-2"
+            for="inline-user-name"
+          >
+            お名前
+          </label>
+          <input
+            type="text"
+            id="inline-user-name"
+            class="text-dark-default w-full mb-2 p-2"
+            v-model="newTitle.user_name">
+          <button
+            type="button"
+            class="bg-orange-default text-dark-default p-2"
+            @click="handleCreateNewTitle">
+            お題を投稿する
+          </button>
+        </form>
+      </div>
+      <!-- お題詳細ページにいるときのみ表示します -->
+      <div
+        v-if="this.$route.name == 'TitleShow'"
+        class="container mx-auto flex flex-col p-3"
+      >
         <button
-          type="button"
-          class="text-dark-default bg-orange-default w-full p-2"
-          @click="handleCreateNewReply">
-          回答を投稿する
+          @click="showDrawingSpace"
+          class="bg-orange-default text-dark-default mb-2"
+        >
+          絵を描く
         </button>
-      </form>
+        <form>
+          <p
+            class="mb-2 p-2"
+          >回答投稿フォーム</p>
+          <label
+            class="w-full"
+            for="inline-theme">
+            回答
+          </label>
+          <input
+            id="inline-theme"
+            type="text"
+            name="reply_title"
+            class="text-dark-default w-full mb-1 p-2"
+            v-model="newReply.reply_title">
+          <label
+            class="w-full"
+            for="inline-user-name"
+          >
+            お名前
+          </label>
+          <input
+            id="inline-user-name"
+            type="text"
+            name="user_name"
+            class="text-dark-default w-full mb-1 p-2"
+            v-model="newReply.user_name"
+          >
+          <label
+            for="image"
+          >
+            絵をえらぶ
+          </label>
+          <input
+            id="image"
+            type="file"
+            name="image"
+            class="w-full mb-1 p-2"
+            @change="handleChange"
+          >
+          <button
+            type="button"
+            class="text-dark-default bg-orange-default w-full p-2"
+            @click="handleCreateNewReply">
+            回答を投稿する
+          </button>
+        </form>
+      </div>
       <ul class="flex flex-col p-3 justify-between">
         <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
           <router-link :to="{ name: 'Titles' }">お題一覧</router-link>
@@ -116,15 +129,24 @@
         </li>
       </ul>
     </div>
+    <DrawingSpace
+      v-if="isVisibleDrawingSpace"
+      @close-drawing-space="closeModal"
+    />
   </div>
 </template>
 
 <script>
+import DrawingSpace from './DrawingSpace.vue'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'TheSidebar',
+  components: {
+    DrawingSpace
+  },
   data() {
     return {
+      isVisibleDrawingSpace: false,
       newTitle: {
         theme: '',
         user_name: ''

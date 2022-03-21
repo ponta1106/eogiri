@@ -62,6 +62,7 @@ export default {
       eraserWidth: 1,
       isDrag: false,
       isVisible: false,
+      drawingSpace: null,
     };
   },
   mounted() {
