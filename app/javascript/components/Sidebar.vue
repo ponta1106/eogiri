@@ -9,12 +9,10 @@
       </router-link>
       <!-- お題一覧ページにいるときのみ表示します -->
       <div
-        v-if="this.$route.name == 'TitleShow'"
+        v-if="this.$route.name == 'Titles'"
         class="container mx-auto flex flex-col p-3"
       >
         <form
-          v-if="this.$route.name == 'Titles'"
-          class="container mx-auto flex flex-col justify-between p-3"
         >
           <p
             class="mb-2 p-2"
@@ -43,7 +41,7 @@
             v-model="newTitle.user_name">
           <button
             type="button"
-            class="bg-orange-default text-dark-default p-2"
+            class="bg-orange-default text-dark-default w-full p-2"
             @click="handleCreateNewTitle">
             お題を投稿する
           </button>
