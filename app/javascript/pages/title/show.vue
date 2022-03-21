@@ -45,7 +45,7 @@
           </p>
         </ul>
       </div>
-      <div class="flex mt-5">
+      <!-- <div class="flex mt-5">
         <button
           type="button"
           class="text-dark-default bg-orange-default w-full mb-1 p-2"
@@ -53,12 +53,12 @@
         >
           + 絵を描く
         </button>
-      </div>
-      <DrawingSpace
+      </div> -->
+      <!-- <DrawingSpace
         v-if="isVisibleDrawingSpace"
         :currentTheme="selectedTitle.theme"
         @close-drawing-space="closeModal"
-      />
+      /> -->
     </div>
   </div>
 </template>
@@ -74,7 +74,7 @@ export default {
   data() {
     return {
       currentTitle: '',
-      isVisibleDrawingSpace: false
+      // isVisibleDrawingSpace: false
     }
   },
   computed: {
