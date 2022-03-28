@@ -1,6 +1,6 @@
 module.exports = {
   purge: ["./src/**/*.html", "src/**/*.vue"],
-  darkMode: 'media',
+  // darkMode: 'media',
   theme: {
     extend: {
       fontFamily: {
