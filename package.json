@@ -17,7 +17,7 @@
     "postcss-loader": "4",
     "tailwindcss": "2.2.19",
     "turbolinks": "^5.2.0",
-    "vue": "^3.2.29",
+    "vue": "^3.2.31",
     "vue-loader": "^17.0.0",
     "vue-router": "^4.0.12",
     "vue-template-compiler": "^2.6.14",
