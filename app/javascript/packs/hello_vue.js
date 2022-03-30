@@ -9,5 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = createApp(App)
     .use(router)
     .use(store)
-  app.mount('#vue-template');
+  app.mount('#vue-app');
 })
