@@ -2,10 +2,10 @@
   <div id="sidebar">
     <div class="h-screen">
       <router-link :to="{ name: 'Top' }">
-        <img
+        <!-- <img
           src="../stylesheets/images/logo.png"
           alt="logo"
-        >
+        > -->
       </router-link>
       <!-- お題一覧ページにいるときのみ表示します -->
       <div

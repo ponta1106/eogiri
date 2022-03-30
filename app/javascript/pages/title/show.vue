@@ -2,7 +2,7 @@
   <div id="title-show">
     <div class="container mx-auto h-5/6 w-11/12 p-3 m-3">
       <div class="flex bg-orange-default w-full">
-        <img src="../../stylesheets/images/logo.png" alt="logo" class="h-24">
+        <!-- <img src="../../stylesheets/images/logo.png" alt="logo" class="h-24"> -->
         <h1 class="text-2xl text-dark-default self-center mx-auto">お題 「 {{ selectedTitle.theme }} 」
         </h1>
       </div>
