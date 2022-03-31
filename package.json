@@ -2,7 +2,7 @@
   "name": "eogiri",
   "private": true,
   "scripts": {
-    "build": "postcss /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/style.css -o /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/dist.css"
+    "build": "NODE_ENV=production postcss /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/style.css -o /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/dist.css"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "4",
@@ -26,7 +26,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "@webpack-cli/serve": "^1.6.1",
-    "postcss": "^8.4.7",
+    "postcss": "^8.4.12",
     "postcss-cli": "^9.1.0",
     "webpack-dev-server": "^4.7.4"
   }
