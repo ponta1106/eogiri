@@ -34,4 +34,4 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-app/javascript/stylesheets/style.css
+/app/javascript/stylesheets/style.css
