@@ -8,7 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('./hello_vue.js')
-// import "../stylesheets/dist.css";
+import "../stylesheets/dist.css";
 // import "../stylesheets/style.css";
 
 // Uncomment to copy all static images under ../images to the output folder and reference
