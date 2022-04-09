@@ -2,7 +2,6 @@
   "name": "eogiri",
   "private": true,
   "scripts": {
-    "build": "postcss /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/style.css -o /Users/denpatanobesai/runteq/eogiri/app/javascript/stylesheets/dist.css"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "4",

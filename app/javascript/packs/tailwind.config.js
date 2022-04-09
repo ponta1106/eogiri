@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ["./src/**/*.html", "./src/**/*.vue"],
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -20,21 +20,6 @@ module.exports = {
           lighter : '#95B5E7',
           default : '#7689ad',
         }
-      },
-      animation: {
-        slideIn: "slideIn 1s ease-in forwards",
-      },
-      keyframes: {
-        slideIn: {
-          "0%": {
-            opacity: 0,
-            transform: "translateY(60px)",
-          },
-          "100%": {
-            opacity: 1,
-            transform: "translateY(0)",
-          },
-        },
       },
     },
   },
