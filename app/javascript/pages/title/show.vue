@@ -1,24 +1,25 @@
 <template>
   <div id="title-show">
     <div class="container mx-auto h-5/6 w-11/12 p-3 m-3">
-      <div class="flex bg-orange-default w-full">
+      <div class="flex bg-orange-default">
         <img src="../../stylesheets/images/logo.png" alt="logo" class="h-24">
         <h1 class="text-2xl text-dark-default self-center mx-auto">お題 「 {{ selectedTitle.theme }} 」
         </h1>
       </div>
-      <div class="flex mt-5">
+      <h3 class="mt-5">はくしゅが多い順</h3>
+      <div class="flex mt-5 w-full">
         <ul
-          class="flex text-dark-default overflow-auto h-96"
+          class="flex text-dark-default overflow-auto h-96 w-full"
         >
           <li
             v-for="(reply, index) in ranking" :data-index="index"
             :key="reply"
-            class="bg-orange-default w-40 mr-2 flex flex-col justify-between"
+            class="bg-orange-default w-80 mr-2 flex flex-col justify-between"
           >
-            <div class="self-center bg-white w-40 h-32">
+            <div class="self-center bg-white w-80 h-32">
               <img
                 :src="reply.image_url"
-                class="object-contain w-40 h-32"
+                class="object-contain w-80 h-32"
               >
             </div>
             <div class="self-center p-2">
@@ -30,11 +31,11 @@
               <button
                 @click="handleUpdateReply(reply)"
                 class="m-2 p-2 bg-dark-default text-orange-default"
-              >{{ reply.favorite }} <small>いいね！</small></button>
-              <button
+              >{{ reply.favorite }} <small>はくしゅ！</small></button>
+              <!-- <button
                 class="m-2 p-2 bg-dark-default text-orange-default"
                 @click="handleDeleteReply(reply)"
-              >削除</button>
+              >削除</button> -->
             </div>
           </li>
           <p
@@ -45,20 +46,6 @@
           </p>
         </ul>
       </div>
-      <!-- <div class="flex mt-5">
-        <button
-          type="button"
-          class="text-dark-default bg-orange-default w-full mb-1 p-2"
-          @click="showDrawingSpace"
-        >
-          + 絵を描く
-        </button>
-      </div> -->
-      <!-- <DrawingSpace
-        v-if="isVisibleDrawingSpace"
-        :currentTheme="selectedTitle.theme"
-        @close-drawing-space="closeModal"
-      /> -->
     </div>
   </div>
 </template>
@@ -140,7 +127,6 @@ export default {
     },
     async handleUpdateReply(reply) {
       reply.favorite += 1;
-      console.log(reply)
       try {
         await this.updateReply(reply);
       } catch (error) {

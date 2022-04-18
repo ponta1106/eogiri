@@ -229,7 +229,6 @@ export default {
     },
     async handleUpdateReply(reply) {
       reply.favorite += 1;
-      console.log(reply)
       try {
         await this.updateReply(reply);
       } catch (error) {

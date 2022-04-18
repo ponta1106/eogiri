@@ -4,7 +4,7 @@
       class="container min-w-52 w-52 flex-none bg-dark-default"
     />
     <div
-      class="relative w-full flex flex-col"
+      class="relative min-w-100 w-full flex flex-col"
     >
       <Message
         v-if="this.$route.name != 'Top'"
