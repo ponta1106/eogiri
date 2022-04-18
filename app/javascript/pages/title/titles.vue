@@ -6,7 +6,7 @@
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
-          class="bg-orange-default my-2 p-2 flex justify-between"
+          class="bg-orange-default my-2 p-5 flex justify-between"
         >
           <div class="self-center">
             <router-link
@@ -14,13 +14,13 @@
                 name: 'TitleShow',
                 params: { id: title.id }
               }"
-            >{{ title.id }} . {{ title.theme }} - {{ title.user_name }}
+            >No.{{ title.id }} 「{{ title.theme }}」<small>by {{ title.user_name }}</small>
             </router-link>
           </div>
-          <button
+          <!-- <button
             class="m-2 p-2 bg-dark-default text-orange-default"
             @click="handleDeleteTitle(title)"
-          >お題を削除</button>
+          >お題を削除</button> -->
         </li>
       </ul>
     </div>
