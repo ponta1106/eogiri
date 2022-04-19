@@ -1,41 +1,43 @@
 <template>
   <div id="title-show">
-    <div class="container mx-auto h-5/6 w-11/12 p-3 m-3">
+    <div class="container mx-auto h-5/6 w-11/12 m-3">
       <div class="flex bg-orange-default">
         <img src="../../stylesheets/images/logo.png" alt="logo" class="h-24">
         <h1 class="text-2xl text-dark-default self-center mx-auto">お題 「 {{ selectedTitle.theme }} 」
         </h1>
       </div>
       <h3 class="mt-5">はくしゅが多い順</h3>
-      <div class="flex mt-5 w-full">
+      <div class="mt-5 w-full">
         <ul
-          class="flex text-dark-default overflow-auto h-96 w-full"
+          class="flex flex-col text-dark-default h-screen overflow-auto"
         >
           <li
             v-for="(reply, index) in ranking" :data-index="index"
             :key="reply"
-            class="bg-orange-default w-80 mr-2 flex flex-col justify-between"
+            class="mb-3 flex justify-between"
           >
-            <div class="self-center bg-white w-80 h-32">
+            <div class="bg-white w-96">
               <img
                 :src="reply.image_url"
                 class="object-contain w-80 h-32"
               >
             </div>
-            <div class="self-center p-2">
-              {{ reply.reply_title }}
-              <br>
-              <small>by {{ reply.user_name }}</small>
-            </div>
-            <div class="self-center p-2">
-              <button
-                @click="handleUpdateReply(reply)"
-                class="m-2 p-2 bg-dark-default text-orange-default"
-              >{{ reply.favorite }} <small>はくしゅ！</small></button>
-              <!-- <button
-                class="m-2 p-2 bg-dark-default text-orange-default"
-                @click="handleDeleteReply(reply)"
-              >削除</button> -->
+            <div class="flex-grow bg-orange-default">
+              <div class="text-center p-2">
+                {{ reply.reply_title }}
+                <br>
+                <small>by {{ reply.user_name }}</small>
+              </div>
+              <div class="text-center p-2">
+                <button
+                  @click="handleUpdateReply(reply)"
+                  class="m-2 p-2 bg-dark-default text-orange-default"
+                >{{ reply.favorite }} <small>はくしゅ！</small></button>
+                <!-- <button
+                  class="m-2 p-2 bg-dark-default text-orange-default"
+                  @click="handleDeleteReply(reply)"
+                >削除</button> -->
+              </div>
             </div>
           </li>
           <p
