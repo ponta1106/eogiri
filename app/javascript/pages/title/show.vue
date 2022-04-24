@@ -1,6 +1,6 @@
 <template>
   <div id="title-show">
-    <div class="container mx-auto h-5/6 w-11/12 m-3">
+    <div class="container h-5/6 w-5/6 m-3 mx-auto">
       <div class="flex bg-orange-default">
         <img src="../../stylesheets/images/logo.png" alt="logo" class="h-24">
         <h1 class="text-2xl text-dark-default self-center mx-auto">お題 「 {{ selectedTitle.theme }} 」

@@ -1,8 +1,8 @@
 <template>
   <div id="title-index" class="h-screen">
-    <div class="container mx-auto w-11/12 p-3 h-full flex flex-col justify-around">
+    <div class="container h-full w-5/6 mx-auto m-3 flex flex-col justify-around">
       <h3 class="text-3xl text-center m-3">お題一覧</h3>
-      <ul class="overflow-auto text-dark-default p-3">
+      <ul class="overflow-auto text-dark-default">
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
