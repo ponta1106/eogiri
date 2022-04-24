@@ -1,16 +1,20 @@
 <template>
+<div
+  id="message"
+  v-show="content"
+  class="absolute top-1/4 w-full z-10"
+>
   <div
-    id="message"
-    v-show="content"
-    class="bg-white text-dark-default absolute bottom-10 left-10 w-5/6 container z-10 rounded filter drop-shadow flex justify-between"
+    class="bg-white text-dark-default w-5/6 mx-auto rounded filter drop-shadow flex justify-between p-3"
   >
     <img
       src="../stylesheets/images/logo.png"
       alt="logo"
-      class="h-20 rounded-l"
+      class="h-20 rounded"
     >
     <p class="flex-1 text-center self-center">{{ content }}</p>
   </div>
+</div>
 </template>
 
 <script>
