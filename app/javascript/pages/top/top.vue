@@ -15,22 +15,4 @@
 </template>
 
 <script>
-import DrawingSpace from '../../components/DrawingSpace.vue'
-export default {
-  components: { DrawingSpace },
-  name: 'Top',
-  data() {
-    return {
-      isVisibleDrawingSpace: false,
-    }
-  },
-  methods: {
-    showDrawingSpace() {
-      this.isVisibleDrawingSpace = true;
-    },
-    closeModal() {
-      this.isVisibleDrawingSpace = false;
-    }
-  }
-}
 </script>
