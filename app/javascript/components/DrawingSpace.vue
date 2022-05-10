@@ -20,9 +20,13 @@
         :class="{ eraser: canvasMode === 'eraser' }"
         class="bg-white"
         @mousedown="dragStart"
+        @touchstart="dragStart"
         @mouseup="dragEnd"
         @mouseout="dragEnd"
+        @touchend="dragEnd"
+        @touchleave="dragEnd"
         @mousemove="draw"
+        @touchmove="draw"
       >このブラウザは HTML5 Canvas に対応していません。</canvas>
       <div
         id="drawing-space-menus"
@@ -58,8 +62,8 @@ export default {
       canvasMode: 'penBlack',
       canvas: null,
       context: null,
-      penWidth: 1,
-      eraserWidth: 1,
+      penWidth: 3,
+      eraserWidth: 3,
       isDrag: false,
       isVisible: false,
       drawingSpace: null,
@@ -137,6 +141,7 @@ export default {
     },
     // 描画開始(mousedown)
     dragStart(e) {
+      // e.preventDefault();
       var x = e.layerX
       var y = e.layerY - this.drawingSpaceTitle.clientHeight
       this.context.beginPath();
