@@ -4,7 +4,7 @@
     >
     <div
       id="drawing-space"
-      class="w-5/6 h-5/6 absolute">
+      class="w-screen h-screen absolute">
       <h1
         id="drawing-space-title"
         class="bg-orange-default text-dark-default p-2 flex justify-between"
@@ -62,8 +62,8 @@ export default {
       canvasMode: 'penBlack',
       canvas: null,
       context: null,
-      penWidth: 3,
-      eraserWidth: 3,
+      penWidth: 5,
+      eraserWidth: 5,
       isDrag: false,
       isVisible: false,
       drawingSpace: null,
@@ -141,7 +141,6 @@ export default {
     },
     // 描画開始(mousedown)
     dragStart(e) {
-      // e.preventDefault();
       var x = e.layerX
       var y = e.layerY - this.drawingSpaceTitle.clientHeight
       this.context.beginPath();
