@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="font-ReggaeOne text-orange-default min-h-screen w-screen bg-dark-lighter flex">
-    <Sidebar v-if="this.$route.name != 'Top'"
+    <Sidebar v-if="this.$route.name != 'Top' && this.$route.name != 'DrawingSpace'"
       class="container min-w-52 w-52 flex-none bg-dark-default"
     />
     <div

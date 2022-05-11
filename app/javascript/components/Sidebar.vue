@@ -125,6 +125,11 @@
             <small>お問合せ</small>
           </router-link>
         </li>
+        <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
+          <router-link :to="{ name: 'DrawingSpace' }">
+            <small>お絵かきスペース</small>
+          </router-link>
+        </li>
       </ul>
     </div>
     <DrawingSpace
