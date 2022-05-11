@@ -1,10 +1,10 @@
 <template>
   <div
-    class="fixed top-0 left-0 w-full h-full bg-modalbg flex items-center justify-around z-10"
+    class="fixed top-0 left-0 w-screen h-screen  bg-modalbg flex items-center justify-around z-10"
     >
     <div
       id="drawing-space"
-      class="w-screen h-screen absolute">
+      class="absolute top-0 left-0 w-full h-full">
       <h1
         id="drawing-space-title"
         class="bg-orange-default text-dark-default p-2 flex justify-between"
@@ -19,14 +19,14 @@
         id="myCanvas"
         :class="{ eraser: canvasMode === 'eraser' }"
         class="bg-white"
-        @mousedown="dragStart"
-        @touchstart="dragStart"
-        @mouseup="dragEnd"
-        @mouseout="dragEnd"
-        @touchend="dragEnd"
-        @touchleave="dragEnd"
-        @mousemove="draw"
-        @touchmove="draw"
+        @mousedown.stop="dragStart"
+        @touchstart.stop="dragStart"
+        @mouseup.stop="dragEnd"
+        @mouseout.stop="dragEnd"
+        @touchend.stop="dragEnd"
+        @touchleave.stop="dragEnd"
+        @mousemove.stop="draw"
+        @touchmove.stop="draw"
       >このブラウザは HTML5 Canvas に対応していません。</canvas>
       <div
         id="drawing-space-menus"
