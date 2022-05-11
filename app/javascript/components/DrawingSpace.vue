@@ -10,10 +10,17 @@
         class="bg-orange-default text-dark-default p-2 flex justify-between"
       >
       {{ currentTheme }}
-      <span
-        class="bg-dark-default text-orange-default px-2 cursor-pointer"
-        @click="closeModal"
-      >閉じる</span>
+        <span
+          class="bg-dark-default text-orange-default px-2 cursor-pointer"
+          @click="closeModal"
+        >閉じる</span>
+        <span
+          class="bg-dark-default text-orange-default px-2 cursor-pointer"
+        >
+          <router-link :to="{ name: 'Top' }">
+            <small>Top</small>
+          </router-link>
+        </span>
       </h1>
       <canvas
         id="myCanvas"
