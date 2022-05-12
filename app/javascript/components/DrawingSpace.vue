@@ -149,8 +149,8 @@ export default {
     // 描画(スマホ)
     touchMove(e) {
       e.preventDefault();
-      var x = e.layerX
-      var y = e.layerY - this.drawingSpaceTitle.clientHeight
+      var x = e.changedTouches[0].pageX
+      var y = e.changedTouches[0].pageY - this.drawingSpaceTitle.clientHeight
       if(!this.isDrag) {
         return;
       }
@@ -169,8 +169,8 @@ export default {
     // 描画開始(スマホ)
     touchStart(e) {
       e.preventDefault();
-      var x = e.layerX
-      var y = e.layerY - this.drawingSpaceTitle.clientHeight
+      var x = e.changedTouches[0].pageX
+      var y = e.changedTouches[0].pageY - this.drawingSpaceTitle.clientHeight
       this.context.beginPath();
       this.context.lineTo(x, y);
       this.context.stroke();

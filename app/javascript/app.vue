@@ -25,3 +25,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+  /* support iOS */
+  html{
+    height: -webkit-fill-available;
+  }
+  body{
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+
+</style>
