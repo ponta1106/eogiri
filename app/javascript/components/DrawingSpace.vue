@@ -26,14 +26,14 @@
         id="myCanvas"
         :class="{ eraser: canvasMode === 'eraser' }"
         class="bg-white"
-        @mousedown.stop="dragStart"
-        @touchstart.stop="dragStart"
-        @mouseup.stop="dragEnd"
-        @mouseout.stop="dragEnd"
-        @touchend.stop="dragEnd"
-        @touchleave.stop="dragEnd"
-        @mousemove.stop="draw"
-        @touchmove.stop="draw"
+        @mousedown="dragStart"
+        @touchstart="touchStart"
+        @mouseup="dragEnd"
+        @mouseout="dragEnd"
+        @touchend="dragEnd"
+        @touchleave="dragEnd"
+        @mousemove="draw"
+        @touchmove="touchMove"
       >このブラウザは HTML5 Canvas に対応していません。</canvas>
       <div
         id="drawing-space-menus"
@@ -136,7 +136,7 @@ export default {
       link.download = 'Eogiri-' + new Date().getTime() + '.png';
       link.click();
     },
-    // 描画
+    // 描画(PC)
     draw(e) {
       var x = e.layerX
       var y = e.layerY - this.drawingSpaceTitle.clientHeight
@@ -146,8 +146,29 @@ export default {
       this.context.lineTo(x, y);
       this.context.stroke();
     },
-    // 描画開始(mousedown)
+    // 描画(スマホ)
+    touchMove(e) {
+      e.preventDefault();
+      var x = e.layerX
+      var y = e.layerY - this.drawingSpaceTitle.clientHeight
+      if(!this.isDrag) {
+        return;
+      }
+      this.context.lineTo(x, y);
+      this.context.stroke();
+    },
+    // 描画開始(PC)
     dragStart(e) {
+      var x = e.layerX
+      var y = e.layerY - this.drawingSpaceTitle.clientHeight
+      this.context.beginPath();
+      this.context.lineTo(x, y);
+      this.context.stroke();
+      this.isDrag = true;
+    },
+    // 描画開始(スマホ)
+    touchStart(e) {
+      e.preventDefault();
       var x = e.layerX
       var y = e.layerY - this.drawingSpaceTitle.clientHeight
       this.context.beginPath();
