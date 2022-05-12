@@ -30,7 +30,7 @@ export const store = createStore({
     },
     setContent: (state,{ content, timeout }) => {
       state.content = content
-      timeout = 5000
+      timeout = 3000
 
       setTimeout(() => (state.content = ''), timeout);
     },

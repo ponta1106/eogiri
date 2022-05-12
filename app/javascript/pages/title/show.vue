@@ -33,10 +33,6 @@
                   @click="handleUpdateReply(reply)"
                   class="m-2 p-2 bg-dark-default text-orange-default"
                 >{{ reply.favorite }} <small>はくしゅ！</small></button>
-                <!-- <button
-                  class="m-2 p-2 bg-dark-default text-orange-default"
-                  @click="handleDeleteReply(reply)"
-                >削除</button> -->
               </div>
             </div>
           </li>
@@ -53,19 +49,9 @@
 </template>
 
 <script>
-import DrawingSpace from '../../components/DrawingSpace.vue'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'TitleShow',
-  components: {
-    DrawingSpace
-  },
-  data() {
-    return {
-      currentTitle: '',
-      // isVisibleDrawingSpace: false
-    }
-  },
   computed: {
     ...mapGetters([
       'titles',
