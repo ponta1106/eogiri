@@ -1,15 +1,16 @@
 <template>
-  <div id="app" class="font-ReggaeOne text-orange-default min-h-screen w-screen bg-dark-lighter flex">
-    <Sidebar v-if="this.$route.name != 'Top' && this.$route.name != 'DrawingSpace'"
-      class="container min-w-52 w-52 flex-none bg-dark-default"
-    />
-    <div
-      class="relative flex flex-col flex-grow"
-    >
-      <Message
-        v-if="this.$route.name != 'Top'"
+  <div id="app" class="font-ReggaeOne text-orange-default min-h-screen w-screen bg-dark-lighter">
+    <div class="md:flex">
+      <Sidebar v-if="this.$route.name != 'Top' && this.$route.name != 'DrawingSpace'"
       />
-      <router-view class="relative"/>
+      <div
+        class="relative flex flex-col flex-grow"
+      >
+        <Message
+          v-if="this.$route.name != 'Top'"
+        />
+        <router-view class="relative"/>
+      </div>
     </div>
   </div>
 </template>

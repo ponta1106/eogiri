@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar">
-    <div class="h-screen">
+    <div class="min-h-screen md:w-52 bg-dark-default">
       <router-link :to="{ name: 'Top' }">
         <img
           src="../stylesheets/images/logo.png"
@@ -125,14 +125,10 @@
             <small>お問合せ</small>
           </router-link>
         </li>
-        <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
-          <router-link :to="{ name: 'DrawingSpace' }">
-            <small>お絵かきスペース</small>
-          </router-link>
-        </li>
       </ul>
     </div>
     <DrawingSpace
+      :title="selectedTitle.theme"
       v-if="isVisibleDrawingSpace"
       @close-drawing-space="closeModal"
     />
@@ -160,8 +156,7 @@ export default {
         user_name: '',
         favorite: 0,
       },
-      uploadImage: null,
-      currentTheme: '',
+      uploadImage: null
     }
   },
   computed: {
