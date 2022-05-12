@@ -82,7 +82,7 @@ export default {
     this.drawingSpaceTitle = document.getElementById('drawing-space-title')
     this.drawingSpaceMenu = document.getElementById('drawing-space-menus')
     this.canvas.width = this.drawingSpace.clientWidth
-    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - this.drawingSpaceMenu.clientHeight
+    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - (this.drawingSpaceMenu.clientHeight * 2)
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
