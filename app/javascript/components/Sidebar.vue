@@ -46,6 +46,9 @@
             お題を投稿する
           </button>
         </form>
+        <Message
+          v-if="this.$route.name != 'Top'"
+        />
       </div>
       <!-- お題詳細ページにいるときのみ表示します -->
       <div
@@ -105,6 +108,9 @@
             回答を投稿する
           </button>
         </form>
+        <Message
+          v-if="this.$route.name != 'Top'"
+        />
       </div>
       <ul class="flex flex-col p-3 justify-between">
         <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
@@ -137,11 +143,13 @@
 
 <script>
 import DrawingSpace from './DrawingSpace.vue'
+import Message from './Message.vue'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'TheSidebar',
   components: {
-    DrawingSpace
+    DrawingSpace,
+    Message
   },
   data() {
     return {
@@ -211,8 +219,8 @@ export default {
       if(this.uploadImage) formData.append("image", this.uploadImage);
       this.newReply.title_id = this.$route.params.id
       // 空欄だったら、投稿せずに、アラートを表示します
-      if(this.newReply.user_name == '' || this.newReply.reply_title == ''){
-        alert('「回答」と「お名前」を入力してください。');
+      if(this.newReply.user_name == '' || this.newReply.reply_title == '' || this.uploadImage == null){
+        alert('「回答」、「お名前」、「画像ファイル」を入力してください。');
         return;
       } else {
         try{

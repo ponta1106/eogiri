@@ -2,15 +2,15 @@
 <div
   id="message"
   v-show="content"
-  class="absolute top-1/4 w-full z-10"
+  class="w-full z-10"
 >
   <div
-    class="bg-white text-dark-default w-5/6 mx-auto rounded filter drop-shadow flex justify-between p-3"
+    class="bg-white text-dark-default w-full mx-auto justify-between p-3 m-3 flex md:flex-col"
   >
     <img
       src="../stylesheets/images/logo.png"
       alt="logo"
-      class="h-20 rounded"
+      class="h-10 mx-auto"
     >
     <p class="flex-1 text-center self-center">{{ content }}</p>
   </div>
