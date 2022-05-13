@@ -46,6 +46,9 @@
             お題を投稿する
           </button>
         </form>
+        <Message
+          v-if="this.$route.name != 'Top'"
+        />
       </div>
       <!-- お題詳細ページにいるときのみ表示します -->
       <div
@@ -105,6 +108,9 @@
             回答を投稿する
           </button>
         </form>
+        <Message
+          v-if="this.$route.name != 'Top'"
+        />
       </div>
       <ul class="flex flex-col p-3 justify-between">
         <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
@@ -137,11 +143,13 @@
 
 <script>
 import DrawingSpace from './DrawingSpace.vue'
+import Message from './Message.vue'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'TheSidebar',
   components: {
-    DrawingSpace
+    DrawingSpace,
+    Message
   },
   data() {
     return {

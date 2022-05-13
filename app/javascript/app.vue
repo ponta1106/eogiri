@@ -6,9 +6,6 @@
       <div
         class="relative flex flex-col flex-grow"
       >
-        <Message
-          v-if="this.$route.name != 'Top'"
-        />
         <router-view class="relative"/>
       </div>
     </div>
@@ -17,12 +14,10 @@
 
 <script>
 import Sidebar from './components/Sidebar.vue'
-import Message from './components/Message.vue'
 export default {
   name: 'App',
   components: {
-    Sidebar,
-    Message
+    Sidebar
   }
 }
 </script>
