@@ -219,8 +219,8 @@ export default {
       if(this.uploadImage) formData.append("image", this.uploadImage);
       this.newReply.title_id = this.$route.params.id
       // 空欄だったら、投稿せずに、アラートを表示します
-      if(this.newReply.user_name == '' || this.newReply.reply_title == ''){
-        alert('「回答」と「お名前」を入力してください。');
+      if(this.newReply.user_name == '' || this.newReply.reply_title == '' || this.uploadImage == null){
+        alert('「回答」、「お名前」、「画像ファイル」を入力してください。');
         return;
       } else {
         try{
