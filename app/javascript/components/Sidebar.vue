@@ -56,7 +56,7 @@
         class="container mx-auto flex flex-col p-3"
       >
         <button
-          @click="showDrawingSpace"
+          @click="showDrawingSpace(); resetScrollY();"
           class="bg-orange-default text-dark-default mb-2"
         >
           絵を描く
@@ -164,7 +164,8 @@ export default {
         user_name: '',
         favorite: 0,
       },
-      uploadImage: null
+      uploadImage: null,
+      scrollY: 0
     }
   },
   computed: {
@@ -188,6 +189,10 @@ export default {
     },
     closeModal() {
       this.isVisibleDrawingSpace = false;
+    },
+    resetScrollY() {
+      window.scrollTo(0, 0);
+      console.log(window.scrollY);
     },
     async handleCreateNewTitle() {
       // 空欄だったら、投稿せずに、アラートを表示します
