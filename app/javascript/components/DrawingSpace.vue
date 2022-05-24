@@ -32,18 +32,69 @@
         id="drawing-space-menus"
         class="bg-orange-default text-dark-default p-2"
       >
-        <div class="flex justify-between">
-          <button id="pen-black-button" @click="penBlack">ペン(黒)</button>
-          <button id="pen-red-button" @click="penRed">ペン(赤)</button>
-          <button id="pen-blue-button" @click="penBlue">ペン(青)</button>
-          <button id="eraser-button" @click="eraser">消しゴム</button>
-          <button id="clear-button" @click="clear">クリア</button>
+        <div class="flex mb-2 justify-between">
+          <button
+            id="pen-black-button"
+            @click="penBlack"
+            class="h-8 w-8 bg-black mr-2"
+          >
+          </button>
+          <button
+            id="pen-red-button"
+            @click="penRed"
+            class="h-8 w-8 bg-red-700 mr-2"
+          >
+          </button>
+          <button
+            id="pen-blue-button"
+            @click="penBlue"
+            class="h-8 w-8 bg-blue-700 mr-2"
+          >
+          </button>
+          <button
+            id="eraser-button"
+            @click="eraser"
+            class="p-1 bg-gray-200 mr-2"
+          >消しゴム
+          </button>
+          <button
+            id="clear-button"
+            @click="clear"
+            class="p-1 bg-dark-default text-white mr-2"
+          >クリア</button>
         </div>
-        <span>ペンの太さ : {{ penWidth }}</span>
-        <input type="range" list="tickmarks" min="1" max="100" step="1" v-model.number="penWidth" @change="changePenWidth">
-        <span>消しゴムの太さ : {{ eraserWidth }}</span>
-        <input type="range" list="tickmarks" min="1" max="100" step="1" v-model.number="eraserWidth" @change="changeEraserWidth">
-        <button id="download-button" @click="download">ダウンロード</button>
+        <div class="flex mb-2 justify-between">
+          <div>
+            <span>ペンの太さ : {{ penWidth }}</span>
+            <input
+              type="range"
+              list="tickmarks"
+              min="1"
+              max="100"
+              step="1"
+              v-model.number="penWidth"
+              @change="changePenWidth"
+              class="mr-2"
+            >
+          </div>
+          <div>
+            <span>消しゴムの太さ : {{ eraserWidth }}</span>
+            <input
+              type="range"
+              list="tickmarks"
+              min="1"
+              max="100"
+              step="1"
+              v-model.number="eraserWidth" @change="changeEraserWidth"
+              class="mr-2"
+            >
+          </div>
+        </div>
+        <button
+          id="download-button"
+          @click="download"
+          class="p-1 bg-dark-default text-white mr-2 mb-2"
+        >ダウンロード</button>
       </div>
     </div>
   </div>
