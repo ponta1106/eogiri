@@ -5,16 +5,16 @@
     <div
       id="drawing-space"
       class="absolute top-0 left-0 w-full h-full">
-      <h1
+      <h3
         id="drawing-space-title"
         class="bg-orange-default text-dark-default p-2 flex justify-between"
       >
       お題 「{{ title }}」
         <span
-          class="bg-dark-default text-orange-default px-2 cursor-pointer"
+          class="bg-dark-default text-orange-default px-2 cursor-pointer text-sm"
           @click="closeModal"
         >閉じる</span>
-      </h1>
+      </h3>
       <canvas
         id="myCanvas"
         class="bg-white"
@@ -65,13 +65,13 @@
           <button
             id="eraser-button"
             @click="eraser"
-            class="p-1 bg-white mr-2"
+            class="p-1 bg-white mr-2 text-sm"
           >消しゴム
           </button>
           <button
             id="clear-button"
             @click="clear"
-            class="p-1 bg-dark-default text-orange-default mr-2"
+            class="p-1 bg-dark-default text-orange-default mr-2 text-sm"
           >全部消す</button>
         </div>
         <div class="flex mb-2">
@@ -97,7 +97,7 @@
           <button
             id="download-button"
             @click="download"
-            class="p-1 bg-gray-200 mr-2"
+            class="p-1 bg-gray-200 mr-2 text-sm"
           >ダウンロード</button>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default {
     this.drawingSpaceTitle = document.getElementById('drawing-space-title')
     this.drawingSpaceMenu = document.getElementById('drawing-space-menus')
     this.canvas.width = this.drawingSpace.clientWidth
-    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - (this.drawingSpaceMenu.clientHeight * 1.5)
+    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - (this.drawingSpaceMenu.clientHeight * 1.8)
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
