@@ -192,7 +192,6 @@ export default {
     },
     resetScrollY() {
       window.scrollTo(0, 0);
-      console.log(window.scrollY);
     },
     async handleCreateNewTitle() {
       // 空欄だったら、投稿せずに、アラートを表示します
