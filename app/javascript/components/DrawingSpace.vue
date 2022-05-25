@@ -17,7 +17,6 @@
       </h1>
       <canvas
         id="myCanvas"
-        :class="{ eraser: canvasMode === 'eraser' }"
         class="bg-white"
         @mousedown="dragStart"
         @touchstart="touchStart"
@@ -27,12 +26,12 @@
         @touchleave="dragEnd"
         @mousemove="draw"
         @touchmove="touchMove"
-      >このブラウザは HTML5 Canvas に対応していません。</canvas>
+      >このブラウザは HTML5 Canvas に対応していません〜 T_T</canvas>
       <div
         id="drawing-space-menus"
-        class="bg-orange-default text-dark-default p-2"
+        class="bg-orange-default text-dark-default p-2 md:flex"
       >
-        <div class="flex mb-2 justify-between">
+        <div class="flex mb-2 md:mr-2">
           <button
             id="pen-black-button"
             @click="penBlack"
@@ -52,49 +51,55 @@
           >
           </button>
           <button
+            id="pen-yellow-button"
+            @click="penYellow"
+            class="h-8 w-8 bg-yellow-600 mr-2"
+          >
+          </button>
+          <button
+            id="pen-green-button"
+            @click="penGreen"
+            class="h-8 w-8 bg-green-800 mr-2"
+          >
+          </button>
+          <button
             id="eraser-button"
             @click="eraser"
-            class="p-1 bg-gray-200 mr-2"
+            class="p-1 bg-white mr-2"
           >消しゴム
           </button>
           <button
             id="clear-button"
             @click="clear"
-            class="p-1 bg-dark-default text-white mr-2"
-          >クリア</button>
+            class="p-1 bg-dark-default text-orange-default mr-2"
+          >全部消す</button>
         </div>
-        <div class="flex mb-2 justify-between">
-          <div>
-            <span>ペンの太さ : {{ penWidth }}</span>
-            <input
-              type="range"
-              list="tickmarks"
-              min="1"
-              max="100"
-              step="1"
-              v-model.number="penWidth"
-              @change="changePenWidth"
+        <div class="flex mb-2">
+          <div
+            class="mr-2"
+          >
+            <span
               class="mr-2"
-            >
+            >ペンの太さ「{{ penWidth }}」</span>
+            <button
+              @click="penTiny"
+              class="h-3 w-3 bg-gray-700 mr-2 rounded-full"
+            ></button>
+            <button
+              @click="penRegular"
+              class="h-5 w-5 bg-gray-700 mr-2 rounded-full"
+            ></button>
+            <button
+              @click="penBold"
+              class="h-7 w-7 bg-gray-700 mr-2 rounded-full"
+            ></button>
           </div>
-          <div>
-            <span>消しゴムの太さ : {{ eraserWidth }}</span>
-            <input
-              type="range"
-              list="tickmarks"
-              min="1"
-              max="100"
-              step="1"
-              v-model.number="eraserWidth" @change="changeEraserWidth"
-              class="mr-2"
-            >
-          </div>
+          <button
+            id="download-button"
+            @click="download"
+            class="p-1 bg-gray-200 mr-2"
+          >ダウンロード</button>
         </div>
-        <button
-          id="download-button"
-          @click="download"
-          class="p-1 bg-dark-default text-white mr-2 mb-2"
-        >ダウンロード</button>
       </div>
     </div>
   </div>
@@ -114,7 +119,6 @@ export default {
       canvas: null,
       context: null,
       penWidth: 5,
-      eraserWidth: 5,
       isDrag: false,
       isVisible: false,
       drawingSpace: null,
@@ -126,7 +130,7 @@ export default {
     this.drawingSpaceTitle = document.getElementById('drawing-space-title')
     this.drawingSpaceMenu = document.getElementById('drawing-space-menus')
     this.canvas.width = this.drawingSpace.clientWidth
-    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - (this.drawingSpaceMenu.clientHeight * 2)
+    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - (this.drawingSpaceMenu.clientHeight * 1.5)
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
@@ -137,11 +141,18 @@ export default {
     closeModal() {
       this.$emit("closeDrawingSpace");
     },
-    changePenWidth() {
+    //ペンの太さ
+    penTiny() {
+      this.penWidth = 1;
       this.context.lineWidth = this.penWidth;
     },
-    changeEraserWidth() {
-      this.context.lineWidth = this.eraserWidth;
+    penRegular() {
+      this.penWidth = 5;
+      this.context.lineWidth = this.penWidth;
+    },
+    penBold() {
+      this.penWidth = 10;
+      this.context.lineWidth = this.penWidth;
     },
     // ペンモード(黒)
     penBlack() {
@@ -149,7 +160,7 @@ export default {
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
       this.context.lineWidth = this.penWidth;
-      this.context.strokeStyle = 'rgba(100, 100, 100, .1)';
+      this.context.strokeStyle = 'rgba(50, 50, 50, .1)';
     },
     // ペンモード(赤)
     penRed() {
@@ -157,7 +168,7 @@ export default {
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
       this.context.lineWidth = this.penWidth;
-      this.context.strokeStyle = 'rgba(200, 100, 100, .1)';
+      this.context.strokeStyle = 'rgba(205, 92, 92, .1)';
     },
     // ペンモード(青)
     penBlue() {
@@ -165,14 +176,30 @@ export default {
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
       this.context.lineWidth = this.penWidth;
-      this.context.strokeStyle = 'rgba(100, 100, 200, .1)';
+      this.context.strokeStyle = 'rgba(70, 130, 180, .1)';
+    },
+    // ペンモード(黄)
+    penYellow() {
+      this.canvasMode = 'penYellow';
+      this.context.lineCap = 'round';
+      this.context.lineJoin = 'round';
+      this.context.lineWidth = this.penWidth;
+      this.context.strokeStyle = 'rgba(255, 215, 0, .1)';
+    },
+    // ペンモード(緑)
+    penGreen() {
+      this.canvasMode = 'penGreen';
+      this.context.lineCap = 'round';
+      this.context.lineJoin = 'round';
+      this.context.lineWidth = this.penWidth;
+      this.context.strokeStyle = 'rgba(46, 139, 87, .1)';
     },
     eraser() {
       this.canvasMode = 'eraser';
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
-      this.context.lineWidth = this.eraserWidth;
-      this.context.strokeStyle = 'rgba(255, 255, 255, 1)';
+      this.context.lineWidth = this.penWidth;
+      this.context.strokeStyle = 'rgba(255, 255, 255, .1)';
     },
     download() {
       let link = document.createElement("a");
