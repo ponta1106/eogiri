@@ -57,7 +57,7 @@
       >
         <button
           @click="showDrawingSpace(); resetScrollY();"
-          class="bg-white text-dark-default mb-2 fixed right-6 bottom-24 px-8 py-4 rounded-full z-10 filter drop-shadow text-lg"
+          class="bg-white text-dark-default mb-2 fixed right-6 bottom-14 px-8 py-4 rounded-full z-10 filter drop-shadow text-lg"
         >
           絵を描く
         </button>
