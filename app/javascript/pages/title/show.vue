@@ -3,36 +3,38 @@
     <div class="container h-5/6 w-5/6 m-3 mx-auto">
       <div class="flex bg-orange-default">
         <img src="../../stylesheets/images/logo.png" alt="logo" class="h-24">
-        <h1 class="text-2xl text-dark-default self-center mx-auto">お題 「 {{ selectedTitle.theme }} 」
+        <h1 class="text-dark-default self-center ml-10">お題 「 {{ selectedTitle.theme }} 」
         </h1>
       </div>
-      <h3 class="mt-5">はくしゅが多い順</h3>
-      <div class="mt-5 w-full">
+      <h3 class="mt-4">拍手が多い順</h3>
+      <div class="mt-4 w-full">
         <ul
-          class="flex flex-col text-dark-default h-screen overflow-auto"
+          class="text-dark-default lg:w-4/5"
         >
           <li
             v-for="(reply, index) in ranking" :data-index="index"
             :key="reply"
-            class="mb-3 flex justify-between"
+            class="mb-3 bg-gray-200"
           >
-            <div class="bg-white w-96">
+            <div class="bg-white mx-auto">
               <img
                 :src="reply.image_url"
-                class="object-contain w-80 h-32"
+                class="object-contain w-80 h-32 mx-auto"
               >
             </div>
             <div class="flex-grow bg-orange-default">
-              <div class="text-center p-2">
-                {{ reply.reply_title }}
-                <br>
-                <small>by {{ reply.user_name }}</small>
-              </div>
-              <div class="text-center p-2">
-                <button
-                  @click="handleUpdateReply(reply)"
-                  class="m-2 p-2 bg-dark-default text-orange-default"
-                >{{ reply.favorite }} <small>はくしゅ！</small></button>
+              <div class="w-96 mx-auto">
+                <div class="text-center p-2">
+                  タイトル 「 {{ reply.reply_title }} 」
+                  <br>
+                  <small>作者 「 {{ reply.user_name }} 」</small>
+                </div>
+                <div class="text-center p-2">
+                  <button
+                    @click="handleUpdateReply(reply)"
+                    class="m-2 p-2 bg-dark-default text-orange-default"
+                  ><small>拍手を送る</small> {{ reply.favorite }}</button>
+                </div>
               </div>
             </div>
           </li>
