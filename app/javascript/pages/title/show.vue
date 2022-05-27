@@ -23,7 +23,7 @@
               >
             </div>
             <div class="flex-grow bg-orange-default">
-              <div class="w-96 mx-auto">
+              <div class="w-80 mx-auto">
                 <div class="text-center p-2">
                   タイトル 「 {{ reply.reply_title }} 」
                   <br>
