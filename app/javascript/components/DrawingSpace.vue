@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 left-0 w-screen h-screen  bg-modalbg flex items-center justify-around z-10"
+    class="fixed top-0 left-0 w-screen h-screen  bg-modalbg flex items-center justify-around z-20"
     >
     <div
       id="drawing-space"

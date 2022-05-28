@@ -1,6 +1,6 @@
 <template>
   <div id="title-show">
-    <div class="md:w-2/3 mx-auto p-3 mb-96 md:mb-3">
+    <div class="md:w-2/3 mx-auto p-3 mb-24">
       <div class="mb-3">
         <router-link
           :to="{ name: 'Top' }"
@@ -21,7 +21,7 @@
       <h3 class="mt-4">拍手が多い順</h3>
       <div class="mt-4 w-full">
         <ul
-          class="text-dark-default mb-10"
+          class="text-dark-default mb-3"
         >
           <li
             v-for="(reply, index) in ranking" :data-index="index"
@@ -59,8 +59,18 @@
         </ul>
       </div>
     </div>
+    <div
+      class="fixed bottom-0 md:hidden w-full bg-dark-default p-3"
+    >
+      <button
+        class="bg-white text-dark-default p-3 w-full"
+        @click="showForm"
+      >回答を投稿する</button>
+    </div>
     <Sidebar
-      class="fixed bottom-20 md:hidden"
+      @close-form="closeForm"
+      v-if="isShowForm"
+      class="fixed bottom-0 md:hidden"
     />
   </div>
 </template>
@@ -72,6 +82,11 @@ export default {
   name: 'TitleShow',
   components: {
     Sidebar
+  },
+  data() {
+    return {
+      isShowForm: false
+    }
   },
   computed: {
     ...mapGetters([
@@ -103,6 +118,12 @@ export default {
       'updateReply',
       'deleteReply',
     ]),
+    showForm() {
+      this.isShowForm = true;
+    },
+    closeForm() {
+      this.isShowForm = false;
+    },
     showDrawingSpace() {
       this.isVisibleDrawingSpace = true;
     },
