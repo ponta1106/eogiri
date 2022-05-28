@@ -23,7 +23,7 @@
             class="mb-2 p-2"
           >お題投稿フォーム</p>
           <span
-            class="bg-dark-default text-orange-default p-2 md:hidden absolute right-0 -top-10"
+            class="bg-dark-default text-orange-default p-2 md:hidden absolute right-0 -top-10 cursor-pointer rounded-tl-lg"
             @click="closeForm"
           >閉じる</span>
           <label
@@ -77,7 +77,7 @@
             class="mb-2 p-2"
           >回答投稿フォーム</p>
           <span
-            class="bg-dark-default text-orange-default p-2 md:hidden absolute right-0 -top-10"
+            class="bg-dark-default text-orange-default p-2 md:hidden absolute right-0 -top-10 cursor-pointer rounded-tl-lg"
             @click="closeForm"
           >閉じる</span>
           <label
