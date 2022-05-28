@@ -194,12 +194,13 @@ export default {
       this.context.lineWidth = this.penWidth;
       this.context.strokeStyle = 'rgba(46, 139, 87, .1)';
     },
+    // ペンモード(消しゴム)
     eraser() {
       this.canvasMode = 'eraser';
       this.context.lineCap = 'round';
       this.context.lineJoin = 'round';
       this.context.lineWidth = this.penWidth;
-      this.context.strokeStyle = 'rgba(255, 255, 255, .1)';
+      this.context.strokeStyle = 'rgb(255, 255, 255)';
     },
     download() {
       let link = document.createElement("a");

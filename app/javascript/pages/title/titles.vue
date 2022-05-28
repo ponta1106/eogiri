@@ -1,8 +1,20 @@
 <template>
-  <div id="title-index" class="h-screen">
-    <div class="container h-full w-5/6 mx-auto m-3 flex flex-col justify-around">
-      <h3 class="text-3xl text-center m-3">お題一覧</h3>
-      <ul class="overflow-auto text-dark-default">
+  <div id="title-index">
+    <div class="md:w-2/3 mx-auto p-3 mb-96 md:mb-3">
+      <div class="mb-3">
+        <router-link
+          :to="{ name: 'Top' }"
+          class="md:hidden"
+        >
+          <img
+            src="../../stylesheets/images/logo.png"
+            alt="logo"
+            class="h-10"
+          >
+        </router-link>
+      </div>
+      <h1 class="text-lg text-center m-3">お題一覧</h1>
+      <ul class="text-dark-default mb-10">
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
@@ -14,7 +26,7 @@
                 name: 'TitleShow',
                 params: { id: title.id }
               }"
-            >No.{{ title.id }} 「{{ title.theme }}」<small>by {{ title.user_name }}</small>
+            >お題 「 {{ title.theme }} 」<small>作者 「 {{ title.user_name }} 」</small>
             </router-link>
           </div>
           <!-- <button
@@ -24,13 +36,20 @@
         </li>
       </ul>
     </div>
+    <Sidebar
+      class="fixed bottom-20 md:hidden"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Sidebar from '../../components/Sidebar.vue'
 export default {
   name: 'Titles',
+  components: {
+    Sidebar
+  },
   data() {
     return {
       addEnter: false,
