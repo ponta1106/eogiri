@@ -1,7 +1,7 @@
 <template>
   <div id="sidebar">
     <div
-      class="md:fixed md:top-0 md:z-10 md:min-h-screen md:h-full md:w-52 bg-dark-default"
+      class="md:fixed md:top-0 md:z-10 md:min-h-screen md:h-full md:w-52 bg-dark-default relative"
     >
       <router-link
         :to="{ name: 'Top' }"
@@ -22,6 +22,10 @@
           <p
             class="mb-2 p-2"
           >お題投稿フォーム</p>
+          <span
+            class="bg-dark-default text-orange-default p-2 md:hidden absolute right-0 -top-10"
+            @click="closeForm"
+          >閉じる</span>
           <label
             class="w-full p-2"
             for="inline-theme"
@@ -60,16 +64,22 @@
         v-if="this.$route.name == 'TitleShow'"
         class="container mx-auto flex flex-col p-3"
       >
-        <button
-          @click="showDrawingSpace(); resetScrollY();"
-          class="bg-white text-dark-default"
-        >
-          絵を描く
-        </button>
+        <div>
+          <button
+            @click="showDrawingSpace(); resetScrollY();"
+            class="bg-white text-dark-default mb-2 p-2 w-full mt-6"
+          >
+            絵を描く
+          </button>
+        </div>
         <form>
           <p
             class="mb-2 p-2"
           >回答投稿フォーム</p>
+          <span
+            class="bg-dark-default text-orange-default p-2 md:hidden absolute right-0 -top-10"
+            @click="closeForm"
+          >閉じる</span>
           <label
             class="w-full"
             for="inline-theme">
@@ -191,6 +201,9 @@ export default {
       'createNewTitle',
       'createNewReply',
     ]),
+    closeForm() {
+      this.$emit("closeForm");
+    },
     showDrawingSpace() {
       this.isVisibleDrawingSpace = true;
     },

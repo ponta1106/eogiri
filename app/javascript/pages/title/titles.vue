@@ -1,6 +1,6 @@
 <template>
   <div id="title-index">
-    <div class="md:w-2/3 mx-auto p-3 mb-96 md:mb-3">
+    <div class="md:w-2/3 mx-auto p-3 mb-24">
       <div class="mb-3">
         <router-link
           :to="{ name: 'Top' }"
@@ -14,7 +14,7 @@
         </router-link>
       </div>
       <h1 class="text-lg text-center m-3">お題一覧</h1>
-      <ul class="text-dark-default mb-10">
+      <ul class="text-dark-default mb-3">
         <li
           v-for="(title, index) in titles" :data-index="index"
           :key="title"
@@ -36,8 +36,18 @@
         </li>
       </ul>
     </div>
+    <div
+      class="fixed bottom-0 md:hidden w-full bg-dark-default p-3"
+    >
+      <button
+        class="bg-white text-dark-default p-3 w-full"
+        @click="showForm"
+      >お題を投稿する</button>
+    </div>
     <Sidebar
-      class="fixed bottom-20 md:hidden"
+      @close-form="closeForm"
+      v-if="isShowForm"
+      class="fixed bottom-0 md:hidden"
     />
   </div>
 </template>
@@ -56,7 +66,8 @@ export default {
       newTitle: {
         theme: '',
         user_name: ''
-      }
+      },
+      isShowForm: false
     }
   },
   computed: {
@@ -72,6 +83,12 @@ export default {
       'createNewTitle',
       'deleteTitle',
     ]),
+    showForm() {
+      this.isShowForm = true;
+    },
+    closeForm() {
+      this.isShowForm = false;
+    },
     async handleCreateNewTitle() {
       // 空欄だったら、投稿せずに、アラートを表示します
       if(this.newTitle.user_name == '' || this.newTitle.theme == ''){
