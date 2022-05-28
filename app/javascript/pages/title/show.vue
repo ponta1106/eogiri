@@ -1,15 +1,27 @@
 <template>
   <div id="title-show">
-    <div class="container h-5/6 w-5/6 m-3 mx-auto">
+    <div class="md:w-2/3 mx-auto p-3 mb-96 md:mb-3">
+      <div class="mb-3">
+        <router-link
+          :to="{ name: 'Top' }"
+          class="md:hidden"
+        >
+          <img
+            src="../../stylesheets/images/logo.png"
+            alt="logo"
+            class="h-10"
+          >
+        </router-link>
+      </div>
       <div class="flex bg-orange-default">
         <img src="../../stylesheets/images/logo.png" alt="logo" class="h-24">
-        <h1 class="text-dark-default self-center ml-10">お題 「 {{ selectedTitle.theme }} 」
+        <h1 class="flex-grow text-dark-default self-center p-3">お題 「 {{ selectedTitle.theme }} 」
         </h1>
       </div>
       <h3 class="mt-4">拍手が多い順</h3>
       <div class="mt-4 w-full">
         <ul
-          class="text-dark-default lg:w-4/5"
+          class="text-dark-default mb-10"
         >
           <li
             v-for="(reply, index) in ranking" :data-index="index"
@@ -47,13 +59,20 @@
         </ul>
       </div>
     </div>
+    <Sidebar
+      class="fixed bottom-20 md:hidden"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Sidebar from '../../components/Sidebar.vue'
 export default {
   name: 'TitleShow',
+  components: {
+    Sidebar
+  },
   computed: {
     ...mapGetters([
       'titles',

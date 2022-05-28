@@ -1,7 +1,12 @@
 <template>
   <div id="sidebar">
-    <div class="min-h-screen md:w-52 bg-dark-default">
-      <router-link :to="{ name: 'Top' }">
+    <div
+      class="md:fixed md:top-0 md:z-10 md:min-h-screen md:h-full md:w-52 bg-dark-default"
+    >
+      <router-link
+        :to="{ name: 'Top' }"
+        class="hidden md:block"
+      >
         <img
           src="../stylesheets/images/logo.png"
           alt="logo"
@@ -41,7 +46,7 @@
             v-model="newTitle.user_name">
           <button
             type="button"
-            class="bg-orange-default text-dark-default w-full p-2"
+            class="bg-orange-default text-dark-default w-full p-2 mb-2"
             @click="handleCreateNewTitle">
             お題を投稿する
           </button>
@@ -57,7 +62,7 @@
       >
         <button
           @click="showDrawingSpace(); resetScrollY();"
-          class="bg-white text-dark-default mb-2 fixed right-6 bottom-14 px-8 py-4 rounded-full z-10 filter drop-shadow text-lg"
+          class="bg-white text-dark-default"
         >
           絵を描く
         </button>
@@ -112,26 +117,28 @@
           v-if="this.$route.name != 'Top'"
         />
       </div>
-      <ul class="flex flex-col p-3 justify-between">
-        <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
-          <router-link :to="{ name: 'Titles' }">お題一覧</router-link>
-        </li>
-        <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
-          <router-link :to="{ name: 'TermsOfUse' }">
-            <small>利用規約</small>
-          </router-link>
-        </li>
-        <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
-          <router-link :to="{ name: 'PrivacyPolicy' }">
-            <small>プライバシーポリシー</small>
-          </router-link>
-        </li>
-        <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
-          <router-link :to="{ name: 'Contact' }">
-            <small>お問合せ</small>
-          </router-link>
-        </li>
-      </ul>
+      <div class="hidden md:block ">
+        <ul class="flex flex-col p-3 justify-between">
+          <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
+            <router-link :to="{ name: 'Titles' }">お題一覧</router-link>
+          </li>
+          <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
+            <router-link :to="{ name: 'TermsOfUse' }">
+              <small>利用規約</small>
+            </router-link>
+          </li>
+          <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
+            <router-link :to="{ name: 'PrivacyPolicy' }">
+              <small>プライバシーポリシー</small>
+            </router-link>
+          </li>
+          <li class="text-orange-default hover:text-dark-default hover:bg-orange-default p-2">
+            <router-link :to="{ name: 'Contact' }">
+              <small>お問合せ</small>
+            </router-link>
+          </li>
+        </ul>
+      </div>
     </div>
     <DrawingSpace
       :title="selectedTitle.theme"
