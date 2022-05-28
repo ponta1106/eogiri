@@ -15,7 +15,7 @@
       <!-- お題一覧ページにいるときのみ表示します -->
       <div
         v-if="this.$route.name == 'Titles'"
-        class="container mx-auto flex flex-col p-3"
+        class="mx-auto flex flex-col p-3"
       >
         <form
         >
@@ -58,7 +58,7 @@
       <!-- お題詳細ページにいるときのみ表示します -->
       <div
         v-if="this.$route.name == 'TitleShow'"
-        class="container mx-auto flex flex-col p-3"
+        class="mx-auto flex flex-col p-3"
       >
         <button
           @click="showDrawingSpace(); resetScrollY();"
