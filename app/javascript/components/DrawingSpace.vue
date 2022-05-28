@@ -125,12 +125,15 @@ export default {
     };
   },
   mounted() {
+    // スクロール禁止
+    document.addEventListener('touchmove', this.disableScroll, { passive: false });
+    document.addEventListener('mousewheel', this.disableScroll, { passive: false });
     this.canvas = document.querySelector('#myCanvas')
     this.drawingSpace = document.getElementById('drawing-space')
     this.drawingSpaceTitle = document.getElementById('drawing-space-title')
     this.drawingSpaceMenu = document.getElementById('drawing-space-menus')
     this.canvas.width = this.drawingSpace.clientWidth
-    this.canvas.height = this.drawingSpace.clientHeight
+    this.canvas.height = this.drawingSpace.clientHeight - (this.drawingSpaceMenu.clientHeight*2)
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
@@ -138,7 +141,12 @@ export default {
     this.context.strokeStyle = 'rgba(100, 100, 100, .1)';
   },
   methods: {
+    disableScroll(e) {
+      e.preventDefault();
+    },
     closeModal() {
+      document.removeEventListener('touchmove', this.disableScroll, { passive: false });
+      document.removeEventListener('mousewheel', this.disableScroll, { passive: false });
       this.$emit("closeDrawingSpace");
     },
     //ペンの太さ
