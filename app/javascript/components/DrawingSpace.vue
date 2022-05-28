@@ -7,26 +7,14 @@
       class="absolute top-0 left-0 w-full h-full">
       <h3
         id="drawing-space-title"
-        class="bg-orange-default text-dark-default p-2 flex justify-between"
+        class="bg-dark-default text-orange-default p-2 flex justify-between"
       >
       お題 「{{ title }}」
         <span
-          class="bg-dark-default text-orange-default px-2 cursor-pointer text-sm"
+          class="text-orange-default px-2 cursor-pointer text-sm"
           @click="closeModal"
         >閉じる</span>
       </h3>
-      <canvas
-        id="myCanvas"
-        class="bg-white"
-        @mousedown="dragStart"
-        @touchstart="touchStart"
-        @mouseup="dragEnd"
-        @mouseout="dragEnd"
-        @touchend="dragEnd"
-        @touchleave="dragEnd"
-        @mousemove="draw"
-        @touchmove="touchMove"
-      >このブラウザは HTML5 Canvas に対応していません〜 T_T</canvas>
       <div
         id="drawing-space-menus"
         class="bg-orange-default text-dark-default p-2 md:flex"
@@ -101,6 +89,18 @@
           >ダウンロード</button>
         </div>
       </div>
+      <canvas
+        id="myCanvas"
+        class="bg-white"
+        @mousedown="dragStart"
+        @touchstart="touchStart"
+        @mouseup="dragEnd"
+        @mouseout="dragEnd"
+        @touchend="dragEnd"
+        @touchleave="dragEnd"
+        @mousemove="draw"
+        @touchmove="touchMove"
+      >このブラウザは HTML5 Canvas に対応していません〜 T_T</canvas>
     </div>
   </div>
 </template>
@@ -130,7 +130,7 @@ export default {
     this.drawingSpaceTitle = document.getElementById('drawing-space-title')
     this.drawingSpaceMenu = document.getElementById('drawing-space-menus')
     this.canvas.width = this.drawingSpace.clientWidth
-    this.canvas.height = this.drawingSpace.clientHeight - this.drawingSpaceTitle.clientHeight - (this.drawingSpaceMenu.clientHeight * 1.8)
+    this.canvas.height = this.drawingSpace.clientHeight
     this.context = this.canvas.getContext('2d')
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';
@@ -211,7 +211,7 @@ export default {
     // 描画(PC)
     draw(e) {
       var x = e.layerX
-      var y = e.layerY - this.drawingSpaceTitle.clientHeight
+      var y = e.layerY - (this.drawingSpaceTitle.clientHeight + this.drawingSpaceMenu.clientHeight)
       if(!this.isDrag) {
         return;
       }
@@ -222,7 +222,7 @@ export default {
     touchMove(e) {
       e.preventDefault();
       var x = e.changedTouches[0].pageX
-      var y = e.changedTouches[0].pageY - this.drawingSpaceTitle.clientHeight
+      var y = e.changedTouches[0].pageY - (this.drawingSpaceTitle.clientHeight + this.drawingSpaceMenu.clientHeight)
       if(!this.isDrag) {
         return;
       }
@@ -232,7 +232,7 @@ export default {
     // 描画開始(PC)
     dragStart(e) {
       var x = e.layerX
-      var y = e.layerY - this.drawingSpaceTitle.clientHeight
+      var y = e.layerY - (this.drawingSpaceTitle.clientHeight + this.drawingSpaceMenu.clientHeight)
       this.context.beginPath();
       this.context.lineTo(x, y);
       this.context.stroke();
@@ -242,7 +242,7 @@ export default {
     touchStart(e) {
       e.preventDefault();
       var x = e.changedTouches[0].pageX
-      var y = e.changedTouches[0].pageY - this.drawingSpaceTitle.clientHeight
+      var y = e.changedTouches[0].pageY - (this.drawingSpaceTitle.clientHeight + this.drawingSpaceMenu.clientHeight)
       this.context.beginPath();
       this.context.lineTo(x, y);
       this.context.stroke();
