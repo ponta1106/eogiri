@@ -1,6 +1,9 @@
 <template>
   <div id="title-show">
-    <div class="md:w-2/3 mx-auto p-3 mb-24">
+    <div
+      class="p-3 mb-24 w-full md:w-2/3 mx-auto"
+      :class="{ fixed : isShowForm }"
+      >
       <div class="mb-3">
         <router-link
           :to="{ name: 'Top' }"

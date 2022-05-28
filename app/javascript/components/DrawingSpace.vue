@@ -1,107 +1,104 @@
 <template>
   <div
-    class="fixed top-0 left-0 w-screen h-screen  bg-modalbg flex items-center justify-around z-20"
+    id="drawing-space"
+    class="fixed top-0 left-0 w-screen h-screen z-20"
+  >
+    <h3
+      id="drawing-space-title"
+      class="bg-dark-default text-orange-default p-2 flex justify-between"
     >
+    お題 「{{ title }}」
+      <span
+        class="text-white px-2 cursor-pointer text-sm"
+        @click="closeModal"
+      >閉じる</span>
+    </h3>
     <div
-      id="drawing-space"
-      class="absolute top-0 left-0 w-full h-full">
-      <h3
-        id="drawing-space-title"
-        class="bg-dark-default text-orange-default p-2 flex justify-between"
-      >
-      お題 「{{ title }}」
-        <span
-          class="text-orange-default px-2 cursor-pointer text-sm"
-          @click="closeModal"
-        >閉じる</span>
-      </h3>
-      <div
-        id="drawing-space-menus"
-        class="bg-orange-default text-dark-default p-2 md:flex"
-      >
-        <div class="flex mb-2 md:mr-2">
-          <button
-            id="pen-black-button"
-            @click="penBlack"
-            class="h-8 w-8 bg-black mr-2"
-          >
-          </button>
-          <button
-            id="pen-red-button"
-            @click="penRed"
-            class="h-8 w-8 bg-red-700 mr-2"
-          >
-          </button>
-          <button
-            id="pen-blue-button"
-            @click="penBlue"
-            class="h-8 w-8 bg-blue-700 mr-2"
-          >
-          </button>
-          <button
-            id="pen-yellow-button"
-            @click="penYellow"
-            class="h-8 w-8 bg-yellow-600 mr-2"
-          >
-          </button>
-          <button
-            id="pen-green-button"
-            @click="penGreen"
-            class="h-8 w-8 bg-green-800 mr-2"
-          >
-          </button>
-          <button
-            id="eraser-button"
-            @click="eraser"
-            class="p-1 bg-white mr-2 text-sm"
-          >消しゴム
-          </button>
-          <button
-            id="clear-button"
-            @click="clear"
-            class="p-1 bg-dark-default text-orange-default mr-2 text-sm"
-          >全部消す</button>
-        </div>
-        <div class="flex mb-2">
-          <div
-            class="mr-2"
-          >
-            <span
-              class="mr-2"
-            >ペンの太さ「{{ penWidth }}」</span>
-            <button
-              @click="penTiny"
-              class="h-3 w-3 bg-gray-700 mr-2 rounded-full"
-            ></button>
-            <button
-              @click="penRegular"
-              class="h-5 w-5 bg-gray-700 mr-2 rounded-full"
-            ></button>
-            <button
-              @click="penBold"
-              class="h-7 w-7 bg-gray-700 mr-2 rounded-full"
-            ></button>
-          </div>
-          <button
-            id="download-button"
-            @click="download"
-            class="p-1 bg-gray-200 mr-2 text-sm"
-          >ダウンロード</button>
-        </div>
+      id="drawing-space-menus"
+      class="bg-orange-default text-dark-default p-2 md:flex"
+    >
+      <div class="flex mb-2 md:mr-2">
+        <button
+          id="pen-black-button"
+          @click="penBlack"
+          class="h-8 w-8 bg-black mr-2"
+        >
+        </button>
+        <button
+          id="pen-red-button"
+          @click="penRed"
+          class="h-8 w-8 bg-red-700 mr-2"
+        >
+        </button>
+        <button
+          id="pen-blue-button"
+          @click="penBlue"
+          class="h-8 w-8 bg-blue-700 mr-2"
+        >
+        </button>
+        <button
+          id="pen-yellow-button"
+          @click="penYellow"
+          class="h-8 w-8 bg-yellow-600 mr-2"
+        >
+        </button>
+        <button
+          id="pen-green-button"
+          @click="penGreen"
+          class="h-8 w-8 bg-green-800 mr-2"
+        >
+        </button>
+        <button
+          id="eraser-button"
+          @click="eraser"
+          class="p-1 bg-white mr-2 text-sm"
+        >消しゴム
+        </button>
+        <button
+          id="clear-button"
+          @click="clear"
+          class="p-1 bg-dark-default text-orange-default mr-2 text-sm"
+        >全部消す</button>
       </div>
-      <canvas
-        id="myCanvas"
-        class="bg-white"
-        @mousedown="dragStart"
-        @touchstart="touchStart"
-        @mouseup="dragEnd"
-        @mouseout="dragEnd"
-        @touchend="dragEnd"
-        @touchleave="dragEnd"
-        @mousemove="draw"
-        @touchmove="touchMove"
-      >このブラウザは HTML5 Canvas に対応していません〜 T_T</canvas>
+      <div class="flex mb-2">
+        <div
+          class="mr-2"
+        >
+          <span
+            class="mr-2"
+          >ペンの太さ「{{ penWidth }}」</span>
+          <button
+            @click="penTiny"
+            class="h-3 w-3 bg-gray-700 mr-2 rounded-full"
+          ></button>
+          <button
+            @click="penRegular"
+            class="h-5 w-5 bg-gray-700 mr-2 rounded-full"
+          ></button>
+          <button
+            @click="penBold"
+            class="h-7 w-7 bg-gray-700 mr-2 rounded-full"
+          ></button>
+        </div>
+        <button
+          id="download-button"
+          @click="download"
+          class="p-1 bg-gray-200 mr-2 text-sm"
+        >ダウンロード</button>
+      </div>
     </div>
+    <canvas
+      id="myCanvas"
+      class="bg-white"
+      @mousedown="dragStart"
+      @touchstart="touchStart"
+      @mouseup="dragEnd"
+      @mouseout="dragEnd"
+      @touchend="dragEnd"
+      @touchleave="dragEnd"
+      @mousemove="draw"
+      @touchmove="touchMove"
+    >このブラウザは HTML5 Canvas に対応していません〜 T_T</canvas>
   </div>
 </template>
 
