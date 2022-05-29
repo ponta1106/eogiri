@@ -39,6 +39,9 @@
     <div
       class="fixed bottom-0 md:hidden w-full bg-dark-default p-3"
     >
+      <Message
+        v-if="this.$route.name != 'Top'"
+      />
       <button
         class="bg-white text-dark-default p-3 w-full"
         @click="showForm"
@@ -54,11 +57,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Message from '../../components/Message.vue'
 import Sidebar from '../../components/Sidebar.vue'
 export default {
   name: 'Titles',
   components: {
-    Sidebar
+    Sidebar,
+    Message
   },
   data() {
     return {
