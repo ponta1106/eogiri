@@ -10,6 +10,7 @@
         <img
           src="../stylesheets/images/logo.png"
           alt="logo"
+          class="h-44 mx-auto"
         >
       </router-link>
       <!-- お題一覧ページにいるときのみ表示します -->
@@ -225,7 +226,8 @@ export default {
           this.newTitle.user_name = ''
           this.$store.commit('setContent' ,{
             content: 'お題を投稿しました！'
-          })
+          });
+          this.$emit("closeForm");
         } catch(error) {
           console.log(error)
         }
@@ -253,7 +255,8 @@ export default {
           this.newReply.user_name = ''
           this.$store.commit('setContent' ,{
             content: '回答を投稿しました！'
-          })
+          });
+          this.$emit("closeForm");
         } catch(error) {
           console.log(error)
         }
